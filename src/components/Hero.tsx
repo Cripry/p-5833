@@ -101,7 +101,7 @@ const Hero = () => {
   
   return (
     <section 
-      className="overflow-hidden relative bg-cover" 
+      className="overflow-hidden relative bg-cover min-h-screen flex items-center justify-center" 
       id="hero" 
       style={{
         backgroundImage: 'url("/Header-background.webp")',
@@ -111,70 +111,41 @@ const Hero = () => {
     >
       <div className="absolute -top-[10%] -right-[5%] w-1/2 h-[70%] bg-pulse-gradient opacity-20 blur-3xl rounded-full"></div>
       
-      <div className="container px-4 sm:px-6 lg:px-8" ref={containerRef}>
-        <div className="flex flex-col lg:flex-row gap-6 lg:gap-12 items-center">
-          <div className="w-full lg:w-1/2">
-            <h1 
-              className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight opacity-0 animate-fade-in mb-6" 
-              style={{ animationDelay: "0.1s" }}
-            >
-              ✨ Clarity. Focus.<br />
-              <span className="text-pulse-500">Momentum.</span>
-            </h1>
-            
-            <p 
-              style={{ animationDelay: "0.3s" }} 
-              className="text-xl sm:text-2xl mb-8 leading-relaxed opacity-0 animate-fade-in text-gray-700 font-normal"
-            >
-              {isBusinessOwner 
-                ? "Stuck in idea overload? Let's simplify your strategy."
-                : "Lost in your thesis? Get a clear path to finish fast."
-              }
-            </p>
-            
-            <div 
-              className="opacity-0 animate-fade-in" 
-              style={{ animationDelay: "0.5s" }}
-            >
-              <a 
-                href="#contact" 
-                className="inline-flex items-center justify-center group w-full sm:w-auto text-center text-white font-semibold text-lg px-8 py-4 rounded-full transition-all duration-300 hover:scale-105 shadow-lg" 
-                style={{
-                  backgroundColor: '#FE5C02',
-                  border: '1px solid white',
-                }}
-              >
-                <Phone className="mr-3 w-5 h-5" />
-                Book Free Clarity Call
-              </a>
-            </div>
-          </div>
+      <div className="container px-4 sm:px-6 lg:px-8 text-center" ref={containerRef}>
+        <div className="max-w-4xl mx-auto">
+          <h1 
+            className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight opacity-0 animate-fade-in mb-6" 
+            style={{ animationDelay: "0.1s" }}
+          >
+            Clarity. Focus.<br />
+            <span className="text-pulse-500">Momentum.</span>
+          </h1>
           
-          <div className="w-full lg:w-1/2 relative mt-6 lg:mt-0">
-            {lottieData ? (
-              <div className="relative z-10 animate-fade-in" style={{ animationDelay: "0.7s" }}>
-                <LottieAnimation 
-                  animationPath={lottieData} 
-                  className="w-full h-auto max-w-lg mx-auto"
-                  loop={true}
-                  autoplay={true}
-                />
-              </div>
-            ) : (
-              <>
-              <div className="absolute inset-0 bg-dark-900 rounded-2xl sm:rounded-3xl -z-10 shadow-xl"></div>
-              <div className="relative transition-all duration-500 ease-out overflow-hidden rounded-2xl sm:rounded-3xl shadow-2xl">
-                <img 
-                  ref={imageRef} 
-                  src="/lovable-uploads/5663820f-6c97-4492-9210-9eaa1a8dc415.png" 
-                  alt="Clarity Coach" 
-                  className="w-full h-auto object-cover transition-transform duration-500 ease-out" 
-                  style={{ transformStyle: 'preserve-3d' }} 
-                />
-                <div className="absolute inset-0" style={{ backgroundImage: 'url("/hero-image.jpg")', backgroundSize: 'cover', backgroundPosition: 'center', mixBlendMode: 'overlay', opacity: 0.5 }}></div>
-              </div>
-              </>
-            )}
+          <p 
+            style={{ animationDelay: "0.3s" }} 
+            className="text-xl sm:text-2xl mb-8 leading-relaxed opacity-0 animate-fade-in text-gray-700 font-normal"
+          >
+            {isBusinessOwner 
+              ? "Stuck in idea overload? Let's simplify your strategy."
+              : "Lost in your thesis? Get a clear path to finish fast."
+            }
+          </p>
+          
+          <div 
+            className="opacity-0 animate-fade-in" 
+            style={{ animationDelay: "0.5s" }}
+          >
+            <a 
+              href="#contact" 
+              className="inline-flex items-center justify-center group w-full sm:w-auto text-center text-white font-semibold text-lg px-8 py-4 rounded-full transition-all duration-300 hover:scale-105 shadow-lg" 
+              style={{
+                backgroundColor: '#FE5C02',
+                border: '1px solid white',
+              }}
+            >
+              <Phone className="mr-3 w-5 h-5" />
+              Book Free Clarity Call
+            </a>
           </div>
         </div>
       </div>

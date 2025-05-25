@@ -30,7 +30,7 @@ const FreeTools = () => {
           </div>
           
           <h2 className="text-4xl sm:text-5xl font-bold mb-6">
-            🎁 Free Tools
+            Free Tools
           </h2>
           
           <p className="text-xl text-gray-700 mb-8">

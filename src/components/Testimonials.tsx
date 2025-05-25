@@ -90,7 +90,7 @@ const Testimonials = () => {
             <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-pulse-500 text-white mr-2">04</span>
             <span>Success Stories</span>
           </div>
-          <h2 className="text-4xl sm:text-5xl font-display font-bold mb-4">🌟 Spotlight Stories</h2>
+          <h2 className="text-4xl sm:text-5xl font-display font-bold mb-4">Spotlight Stories</h2>
           <p className="section-subtitle mx-auto max-w-2xl">
             Real results from real people who found their clarity.
           </p>

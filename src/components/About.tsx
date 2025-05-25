@@ -21,12 +21,12 @@ const About = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-4xl sm:text-5xl font-bold mb-6">
-                👨‍💼 About
+                About
               </h2>
               
               <div className="space-y-4 text-lg text-gray-700 mb-8">
                 <p>
-                  Hi, I'm <strong>[Name]</strong>.
+                  Hi, I'm <strong>ROLF</strong>.
                 </p>
                 <p>
                   I help stuck thinkers take clear action.
@@ -52,7 +52,7 @@ const About = () => {
             <div className="relative">
               <div className="relative rounded-2xl overflow-hidden shadow-elegant">
                 <img 
-                  src="/lovable-uploads/5663820f-6c97-4492-9210-9eaa1a8dc415.png" 
+                  src="/lovable-uploads/09918f56-3cb5-4ade-b461-914ce3667be6.png" 
                   alt="Coach Profile" 
                   className="w-full h-auto object-cover"
                 />

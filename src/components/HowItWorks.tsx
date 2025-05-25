@@ -67,12 +67,12 @@ const HowItWorks = () => {
             <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-pulse-500 text-white mr-2">03</span>
             <span>Process</span>
           </div>
-          <h2 className="section-title mb-4">💡 How It Works</h2>
+          <h2 className="section-title mb-4">How It Works</h2>
           <p className="section-subtitle mx-auto mb-6">
             Simple, focused, effective.
           </p>
           <p className="text-lg text-pulse-600 font-medium">
-            🧭 No fluff. Just focus.
+            No fluff. Just focus.
           </p>
         </div>
         
