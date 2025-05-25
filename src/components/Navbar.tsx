@@ -52,13 +52,14 @@ const Navbar = () => {
             e.preventDefault();
             scrollToTop();
           }}
-          aria-label="Clarity Coach"
+          aria-label="Tharsis.solutions"
         >
-          <img 
-            src="/logo.svg" 
-            alt="Clarity Coach Logo" 
-            className="h-7 sm:h-8" 
-          />
+          <span 
+            className="text-xl sm:text-2xl font-bold text-gray-900"
+            style={{ fontFamily: "'Montserrat Alternates', sans-serif" }}
+          >
+            Tharsis.solutions
+          </span>
         </a>
 
         {/* Desktop Navigation */}
