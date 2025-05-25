@@ -2,10 +2,12 @@
 import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isBusinessOwner, setIsBusinessOwner] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,7 +20,6 @@ const Navbar = () => {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-    // Prevent background scrolling when menu is open
     document.body.style.overflow = !isMenuOpen ? 'hidden' : '';
   };
 
@@ -28,7 +29,6 @@ const Navbar = () => {
       behavior: 'smooth'
     });
     
-    // Close mobile menu if open
     if (isMenuOpen) {
       setIsMenuOpen(false);
       document.body.style.overflow = '';
@@ -52,17 +52,17 @@ const Navbar = () => {
             e.preventDefault();
             scrollToTop();
           }}
-          aria-label="Pulse Robot"
+          aria-label="Clarity Coach"
         >
           <img 
             src="/logo.svg" 
-            alt="Pulse Robot Logo" 
+            alt="Clarity Coach Logo" 
             className="h-7 sm:h-8" 
           />
         </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-8">
+        <nav className="hidden lg:flex space-x-8">
           <a 
             href="#" 
             className="nav-link"
@@ -73,11 +73,27 @@ const Navbar = () => {
           >
             Home
           </a>
-          <a href="#features" className="nav-link">About</a>
-          <a href="#details" className="nav-link">Contact</a>
+          <a href="#how-it-works" className="nav-link">How It Works</a>
+          <a href="#testimonials" className="nav-link">Client Stories</a>
+          <a href="#free-tools" className="nav-link">Free Tools</a>
+          <a href="#contact" className="nav-link">Book a Call</a>
         </nav>
 
-        {/* Mobile menu button - increased touch target */}
+        {/* Toggle Switch */}
+        <div className="hidden md:flex items-center space-x-3">
+          <span className={cn("text-sm", isBusinessOwner ? "text-gray-900 font-medium" : "text-gray-500")}>
+            Business Owner
+          </span>
+          <Switch 
+            checked={!isBusinessOwner}
+            onCheckedChange={(checked) => setIsBusinessOwner(!checked)}
+          />
+          <span className={cn("text-sm", !isBusinessOwner ? "text-gray-900 font-medium" : "text-gray-500")}>
+            Student
+          </span>
+        </div>
+
+        {/* Mobile menu button */}
         <button 
           className="md:hidden text-gray-700 p-3 focus:outline-none" 
           onClick={toggleMenu}
@@ -87,12 +103,26 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile Navigation - improved for better touch experience */}
+      {/* Mobile Navigation */}
       <div className={cn(
         "fixed inset-0 z-40 bg-white flex flex-col pt-16 px-6 md:hidden transition-all duration-300 ease-in-out",
         isMenuOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full pointer-events-none"
       )}>
-        <nav className="flex flex-col space-y-8 items-center mt-8">
+        {/* Mobile Toggle Switch */}
+        <div className="flex items-center justify-center space-x-3 mb-8 p-4 bg-gray-50 rounded-lg">
+          <span className={cn("text-sm", isBusinessOwner ? "text-gray-900 font-medium" : "text-gray-500")}>
+            Business Owner
+          </span>
+          <Switch 
+            checked={!isBusinessOwner}
+            onCheckedChange={(checked) => setIsBusinessOwner(!checked)}
+          />
+          <span className={cn("text-sm", !isBusinessOwner ? "text-gray-900 font-medium" : "text-gray-500")}>
+            Student
+          </span>
+        </div>
+
+        <nav className="flex flex-col space-y-6 items-center">
           <a 
             href="#" 
             className="text-xl font-medium py-3 px-6 w-full text-center rounded-lg hover:bg-gray-100" 
@@ -106,24 +136,44 @@ const Navbar = () => {
             Home
           </a>
           <a 
-            href="#features" 
+            href="#how-it-works" 
             className="text-xl font-medium py-3 px-6 w-full text-center rounded-lg hover:bg-gray-100" 
             onClick={() => {
               setIsMenuOpen(false);
               document.body.style.overflow = '';
             }}
           >
-            About
+            How It Works
           </a>
           <a 
-            href="#details" 
+            href="#testimonials" 
             className="text-xl font-medium py-3 px-6 w-full text-center rounded-lg hover:bg-gray-100" 
             onClick={() => {
               setIsMenuOpen(false);
               document.body.style.overflow = '';
             }}
           >
-            Contact
+            Client Stories
+          </a>
+          <a 
+            href="#free-tools" 
+            className="text-xl font-medium py-3 px-6 w-full text-center rounded-lg hover:bg-gray-100" 
+            onClick={() => {
+              setIsMenuOpen(false);
+              document.body.style.overflow = '';
+            }}
+          >
+            Free Tools
+          </a>
+          <a 
+            href="#contact" 
+            className="text-xl font-medium py-3 px-6 w-full text-center rounded-lg hover:bg-gray-100" 
+            onClick={() => {
+              setIsMenuOpen(false);
+              document.body.style.overflow = '';
+            }}
+          >
+            Book a Call
           </a>
         </nav>
       </div>

@@ -1,86 +1,35 @@
 
 import React, { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
-
-interface StepCardProps {
-  number: string;
-  title: string;
-  description: string;
-  isActive: boolean;
-  onClick: () => void;
-}
-
-const StepCard = ({ number, title, description, isActive, onClick }: StepCardProps) => {
-  return (
-    <div 
-      className={cn(
-        "rounded-xl p-6 cursor-pointer transition-all duration-500 border",
-        isActive 
-          ? "bg-white shadow-elegant border-pulse-200" 
-          : "bg-white/50 hover:bg-white/80 border-transparent"
-      )}
-      onClick={onClick}
-    >
-      <div className="flex items-start">
-        <div className={cn(
-          "flex items-center justify-center rounded-full w-10 h-10 mr-4 flex-shrink-0 transition-colors duration-300",
-          isActive ? "bg-pulse-500 text-white" : "bg-gray-100 text-gray-500"
-        )}>
-          {number}
-        </div>
-        <div>
-          <h3 className={cn(
-            "text-lg font-semibold mb-2 transition-colors duration-300",
-            isActive ? "text-pulse-600" : "text-gray-800"
-          )}>
-            {title}
-          </h3>
-          <p className="text-gray-600 text-sm">{description}</p>
-        </div>
-      </div>
-    </div>
-  );
-};
+import { Phone, MapPin, Zap } from "lucide-react";
 
 const HowItWorks = () => {
-  const [activeStep, setActiveStep] = React.useState(0);
   const sectionRef = useRef<HTMLDivElement>(null);
-  const stepsData = [
+  
+  const steps = [
     {
       number: "01",
-      title: "Request Access",
-      description: "Fill out the application form to join our early access program and secure your spot in line.",
+      title: "Book a free clarity call",
+      description: "We'll identify what's blocking your progress",
+      icon: Phone,
       image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80"
     },
     {
-      number: "02",
-      title: "Personalization",
-      description: "We'll work with you to customize Atlas to your specific needs and preferences.",
+      number: "02", 
+      title: "Get a personalized plan",
+      description: "Receive a clear roadmap tailored to your situation",
+      icon: MapPin,
       image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80"
     },
     {
       number: "03",
-      title: "Integration",
-      description: "Atlas arrives at your location and is integrated into your living or working environment.",
+      title: "Build momentum, fast",
+      description: "Take focused action with ongoing support",
+      icon: Zap,
       image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      number: "04",
-      title: "Adaptation",
-      description: "Through daily interaction, Atlas learns and adapts to your routines, preferences, and needs.",
-      image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80"
     }
   ];
 
-  useEffect(() => {
-    // Auto-cycle through steps
-    const interval = setInterval(() => {
-      setActiveStep((prev) => (prev + 1) % stepsData.length);
-    }, 5000);
-    
-    return () => clearInterval(interval);
-  }, [stepsData.length]);
-  
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -109,59 +58,55 @@ const HowItWorks = () => {
   
   return (
     <section className="py-20 bg-white relative" id="how-it-works" ref={sectionRef}>
-      {/* Background decorative elements */}
       <div className="absolute -top-20 right-0 w-72 h-72 bg-pulse-50 rounded-full opacity-60 blur-3xl -z-10"></div>
       <div className="absolute bottom-0 left-10 w-64 h-64 bg-gray-50 rounded-full opacity-70 blur-3xl -z-10"></div>
       
       <div className="section-container">
         <div className="text-center mb-16 opacity-0 fade-in-stagger">
           <div className="pulse-chip mx-auto mb-4">
+            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-pulse-500 text-white mr-2">03</span>
             <span>Process</span>
           </div>
-          <h2 className="section-title mb-4">How Atlas Integrates Into Your Life</h2>
-          <p className="section-subtitle mx-auto">
-            A seamless four-step process from request to full integration.
+          <h2 className="section-title mb-4">💡 How It Works</h2>
+          <p className="section-subtitle mx-auto mb-6">
+            Simple, focused, effective.
+          </p>
+          <p className="text-lg text-pulse-600 font-medium">
+            🧭 No fluff. Just focus.
           </p>
         </div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-4 order-2 lg:order-1 opacity-0 fade-in-stagger">
-            {stepsData.map((step, index) => (
-              <StepCard
-                key={step.number}
-                number={step.number}
-                title={step.title}
-                description={step.description}
-                isActive={activeStep === index}
-                onClick={() => setActiveStep(index)}
-              />
-            ))}
-          </div>
-          
-          <div className="relative rounded-3xl overflow-hidden h-[400px] shadow-elegant order-1 lg:order-2 opacity-0 fade-in-stagger">
-            {stepsData.map((step, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {steps.map((step, index) => {
+            const IconComponent = step.icon;
+            return (
               <div
-                key={index}
-                className={cn(
-                  "absolute inset-0 transition-opacity duration-1000",
-                  activeStep === index ? "opacity-100" : "opacity-0 pointer-events-none"
-                )}
+                key={step.number}
+                className="text-center opacity-0 fade-in-stagger group"
               >
-                <img
-                  src={step.image}
-                  alt={step.title}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-dark-900/70 to-transparent">
-                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                    <span className="text-pulse-400 font-medium mb-2 block">{step.number}</span>
-                    <h3 className="text-2xl font-semibold mb-2">{step.title}</h3>
-                    <p className="text-white/80">{step.description}</p>
+                <div className="relative mb-6">
+                  <div className="w-20 h-20 mx-auto bg-pulse-500 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <IconComponent className="w-8 h-8 text-white" />
+                  </div>
+                  <div className="absolute -top-2 -right-2 w-8 h-8 bg-pulse-100 rounded-full flex items-center justify-center">
+                    <span className="text-pulse-600 font-bold text-sm">{step.number}</span>
                   </div>
                 </div>
+                
+                <h3 className="text-xl font-semibold mb-3 text-gray-900">
+                  {step.title}
+                </h3>
+                <p className="text-gray-600">
+                  {step.description}
+                </p>
+                
+                {/* Connection line for desktop */}
+                {index < steps.length - 1 && (
+                  <div className="hidden md:block absolute top-10 left-full w-full h-0.5 bg-gradient-to-r from-pulse-200 to-transparent transform translate-x-4"></div>
+                )}
               </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -1,7 +1,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
-import { ArrowRight } from "lucide-react";
+import { Phone } from "lucide-react";
 import LottieAnimation from "./LottieAnimation";
 
 const Hero = () => {
@@ -9,9 +9,9 @@ const Hero = () => {
   const imageRef = useRef<HTMLImageElement>(null);
   const [lottieData, setLottieData] = useState<any>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [isBusinessOwner, setIsBusinessOwner] = useState(true);
 
   useEffect(() => {
-    // Check if mobile on mount and when window resizes
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
@@ -85,6 +85,19 @@ const Hero = () => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isMobile]);
+
+  // Listen for toggle changes from localStorage or context if needed
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const toggleState = localStorage.getItem('isBusinessOwner');
+      if (toggleState !== null) {
+        setIsBusinessOwner(JSON.parse(toggleState));
+      }
+    };
+    
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, []);
   
   return (
     <section 
@@ -101,56 +114,45 @@ const Hero = () => {
       <div className="container px-4 sm:px-6 lg:px-8" ref={containerRef}>
         <div className="flex flex-col lg:flex-row gap-6 lg:gap-12 items-center">
           <div className="w-full lg:w-1/2">
-            <div 
-              className="pulse-chip mb-3 sm:mb-6 opacity-0 animate-fade-in" 
+            <h1 
+              className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight opacity-0 animate-fade-in mb-6" 
               style={{ animationDelay: "0.1s" }}
             >
-              <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-pulse-500 text-white mr-2">01</span>
-              <span>Purpose</span>
-            </div>
-            
-            <h1 
-              className="section-title text-3xl sm:text-4xl lg:text-5xl xl:text-6xl leading-tight opacity-0 animate-fade-in" 
-              style={{ animationDelay: "0.3s" }}
-            >
-              Atlas: Where Code<br className="hidden sm:inline" />Meets Motion
+              ✨ Clarity. Focus.<br />
+              <span className="text-pulse-500">Momentum.</span>
             </h1>
             
             <p 
-              style={{ animationDelay: "0.5s" }} 
-              className="section-subtitle mt-3 sm:mt-6 mb-4 sm:mb-8 leading-relaxed opacity-0 animate-fade-in text-gray-950 font-normal text-base sm:text-lg text-left"
+              style={{ animationDelay: "0.3s" }} 
+              className="text-xl sm:text-2xl mb-8 leading-relaxed opacity-0 animate-fade-in text-gray-700 font-normal"
             >
-              The humanoid companion that learns and adapts alongside you.
+              {isBusinessOwner 
+                ? "Stuck in idea overload? Let's simplify your strategy."
+                : "Lost in your thesis? Get a clear path to finish fast."
+              }
             </p>
             
             <div 
-              className="flex flex-col sm:flex-row gap-4 opacity-0 animate-fade-in" 
-              style={{ animationDelay: "0.7s" }}
+              className="opacity-0 animate-fade-in" 
+              style={{ animationDelay: "0.5s" }}
             >
               <a 
-                href="#get-access" 
-                className="flex items-center justify-center group w-full sm:w-auto text-center" 
+                href="#contact" 
+                className="inline-flex items-center justify-center group w-full sm:w-auto text-center text-white font-semibold text-lg px-8 py-4 rounded-full transition-all duration-300 hover:scale-105 shadow-lg" 
                 style={{
                   backgroundColor: '#FE5C02',
-                  borderRadius: '1440px',
-                  boxSizing: 'border-box',
-                  color: '#FFFFFF',
-                  cursor: 'pointer',
-                  fontSize: '14px',
-                  lineHeight: '20px',
-                  padding: '16px 24px', // Slightly reduced padding for mobile
                   border: '1px solid white',
                 }}
               >
-                Request Access
-                <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+                <Phone className="mr-3 w-5 h-5" />
+                Book Free Clarity Call
               </a>
             </div>
           </div>
           
           <div className="w-full lg:w-1/2 relative mt-6 lg:mt-0">
             {lottieData ? (
-              <div className="relative z-10 animate-fade-in" style={{ animationDelay: "0.9s" }}>
+              <div className="relative z-10 animate-fade-in" style={{ animationDelay: "0.7s" }}>
                 <LottieAnimation 
                   animationPath={lottieData} 
                   className="w-full h-auto max-w-lg mx-auto"
@@ -165,7 +167,7 @@ const Hero = () => {
                 <img 
                   ref={imageRef} 
                   src="/lovable-uploads/5663820f-6c97-4492-9210-9eaa1a8dc415.png" 
-                  alt="Atlas Robot" 
+                  alt="Clarity Coach" 
                   className="w-full h-auto object-cover transition-transform duration-500 ease-out" 
                   style={{ transformStyle: 'preserve-3d' }} 
                 />
