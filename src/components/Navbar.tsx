@@ -3,11 +3,14 @@ import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isBusinessOwner, setIsBusinessOwner] = useState(true);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,6 +20,15 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    // Set toggle state based on current route
+    if (location.pathname === '/student') {
+      setIsBusinessOwner(false);
+    } else {
+      setIsBusinessOwner(true);
+    }
+  }, [location.pathname]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -28,6 +40,34 @@ const Navbar = () => {
       top: 0,
       behavior: 'smooth'
     });
+    
+    if (isMenuOpen) {
+      setIsMenuOpen(false);
+      document.body.style.overflow = '';
+    }
+  };
+
+  const handleToggleChange = (checked: boolean) => {
+    if (checked) {
+      // Switch to Student
+      navigate('/student');
+    } else {
+      // Switch to Business Owner
+      navigate('/business-owner');
+    }
+    
+    if (isMenuOpen) {
+      setIsMenuOpen(false);
+      document.body.style.overflow = '';
+    }
+  };
+
+  const handleNavigation = (path: string) => {
+    if (path === '/') {
+      navigate('/business-owner');
+    } else {
+      navigate(path);
+    }
     
     if (isMenuOpen) {
       setIsMenuOpen(false);
@@ -50,7 +90,7 @@ const Navbar = () => {
           className="flex items-center space-x-2"
           onClick={(e) => {
             e.preventDefault();
-            scrollToTop();
+            handleNavigation('/business-owner');
           }}
           aria-label="Tharsis.solutions"
         >
@@ -69,7 +109,7 @@ const Navbar = () => {
             className="nav-link"
             onClick={(e) => {
               e.preventDefault();
-              scrollToTop();
+              handleNavigation('/business-owner');
             }}
           >
             Home
@@ -87,7 +127,7 @@ const Navbar = () => {
           </span>
           <Switch 
             checked={!isBusinessOwner}
-            onCheckedChange={(checked) => setIsBusinessOwner(!checked)}
+            onCheckedChange={handleToggleChange}
           />
           <span className={cn("text-sm", !isBusinessOwner ? "text-gray-900 font-medium" : "text-gray-500")}>
             Student
@@ -116,7 +156,7 @@ const Navbar = () => {
           </span>
           <Switch 
             checked={!isBusinessOwner}
-            onCheckedChange={(checked) => setIsBusinessOwner(!checked)}
+            onCheckedChange={handleToggleChange}
           />
           <span className={cn("text-sm", !isBusinessOwner ? "text-gray-900 font-medium" : "text-gray-500")}>
             Student
@@ -129,9 +169,7 @@ const Navbar = () => {
             className="text-xl font-medium py-3 px-6 w-full text-center rounded-lg hover:bg-gray-100" 
             onClick={(e) => {
               e.preventDefault();
-              scrollToTop();
-              setIsMenuOpen(false);
-              document.body.style.overflow = '';
+              handleNavigation('/business-owner');
             }}
           >
             Home

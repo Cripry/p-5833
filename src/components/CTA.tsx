@@ -46,27 +46,28 @@ const CTA = () => {
   
   return (
     <section className="py-16 bg-white text-gray-900 relative" id="contact" ref={ctaRef}>
-      <div className="section-container relative z-10 opacity-0 px-4 sm:px-6 text-center">
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
-          📞 Ready to move forward?
-        </h2>
-        
-        <p className="text-xl sm:text-2xl mb-8 text-gray-600">
-          Let's clear the mental clutter.
-        </p>
-        
-        {/* Calendly Embed Container */}
-        <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6 mb-8">
-          <div 
-            className="calendly-inline-widget" 
-            data-url="https://calendly.com/cristianpreguza/cristian-preguza-meet"
-            style={{ minWidth: '320px', height: '700px' }}
-          ></div>
+      <div className="section-container relative z-10 opacity-0 px-4 sm:px-6">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left side - Text content */}
+          <div className="text-center lg:text-left">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+              Ready to move forward?
+            </h2>
+            
+            <p className="text-xl sm:text-2xl mb-8 text-gray-600">
+              Let's clear the mental clutter.
+            </p>
+          </div>
+          
+          {/* Right side - Calendly Embed */}
+          <div className="bg-white rounded-lg shadow-lg p-6">
+            <div 
+              className="calendly-inline-widget" 
+              data-url="https://calendly.com/cristianpreguza/cristian-preguza-meet?hide_gdpr_banner=1"
+              style={{ minWidth: '320px', height: '700px' }}
+            ></div>
+          </div>
         </div>
-        
-        <p className="text-sm text-gray-500 mt-6 max-w-md mx-auto">
-          No pressure. No sales pitch. Just clarity on your next steps.
-        </p>
       </div>
     </section>
   );
