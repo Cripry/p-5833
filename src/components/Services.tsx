@@ -87,13 +87,13 @@ const Services = () => {
               {businessExamples.map((example, index) => (
                 <div
                   key={index}
-                  className="bg-white rounded-xl p-6 shadow-elegant hover:shadow-elegant-hover transition-all duration-300 aspect-square flex flex-col justify-center"
+                  className="bg-white rounded-xl p-6 shadow-elegant hover:shadow-elegant-hover transition-all duration-300 flex flex-col justify-center min-h-[200px]"
                 >
                   <div className="space-y-4">
                     <div className="text-center">
                       <h4 className="text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wide">Transform this</h4>
                       <p 
-                        className="text-sm text-gray-700 leading-relaxed mb-3"
+                        className="text-base text-gray-700 leading-relaxed mb-3"
                         dangerouslySetInnerHTML={{
                           __html: highlightText(example.before, example.beforeHighlight)
                         }}
@@ -102,7 +102,7 @@ const Services = () => {
                     <div className="border-t border-gray-100 pt-3">
                       <h4 className="text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wide text-center">Into THIS</h4>
                       <p 
-                        className="text-sm text-gray-700 leading-relaxed text-center"
+                        className="text-base text-gray-700 leading-relaxed text-center"
                         dangerouslySetInnerHTML={{
                           __html: highlightText(example.after, example.afterHighlight, true)
                         }}

@@ -8,21 +8,18 @@ const HowItWorks = () => {
   
   const steps = [
     {
-      number: "01",
       title: "Book a free clarity call",
       description: "We'll identify what's blocking your progress",
       icon: Phone,
       image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80"
     },
     {
-      number: "02", 
       title: "Get a personalized plan",
       description: "Receive a clear roadmap tailored to your situation",
       icon: MapPin,
       image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80"
     },
     {
-      number: "03",
       title: "Build momentum, fast",
       description: "Take focused action with ongoing support",
       icon: Zap,
@@ -81,15 +78,12 @@ const HowItWorks = () => {
             const IconComponent = step.icon;
             return (
               <div
-                key={step.number}
-                className="text-center opacity-0 fade-in-stagger group"
+                key={index}
+                className="text-center opacity-0 fade-in-stagger group relative"
               >
                 <div className="relative mb-6">
                   <div className="w-20 h-20 mx-auto bg-pulse-500 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                     <IconComponent className="w-8 h-8 text-white" />
-                  </div>
-                  <div className="absolute -top-2 -right-2 w-8 h-8 bg-pulse-100 rounded-full flex items-center justify-center">
-                    <span className="text-pulse-600 font-bold text-sm">{step.number}</span>
                   </div>
                 </div>
                 
@@ -99,11 +93,6 @@ const HowItWorks = () => {
                 <p className="text-gray-600">
                   {step.description}
                 </p>
-                
-                {/* Connection line for desktop */}
-                {index < steps.length - 1 && (
-                  <div className="hidden md:block absolute top-10 left-full w-full h-0.5 bg-gradient-to-r from-pulse-200 to-transparent transform translate-x-4"></div>
-                )}
               </div>
             );
           })}
