@@ -45,6 +45,45 @@ const Services = () => {
     }
   ];
 
+  const studentExamples = [
+    {
+      before: "I've done the research, but I have no idea how to start writing.",
+      after: "Now I have a clear outline — and I'm writing with direction.",
+      beforeHighlight: ["no idea", "start writing"],
+      afterHighlight: ["clear outline", "writing with direction"]
+    },
+    {
+      before: "Every time I sit down to write, I feel completely blocked.",
+      after: "Now I can sit down and make real, focused progress.",
+      beforeHighlight: ["completely blocked"],
+      afterHighlight: ["real, focused progress"]
+    },
+    {
+      before: "My topic makes sense in my head — but I can't explain it clearly.",
+      after: "Now I can explain my research clearly and confidently.",
+      beforeHighlight: ["can't explain", "clearly"],
+      afterHighlight: ["explain my research clearly", "confidently"]
+    },
+    {
+      before: "I keep rewriting the same paragraph over and over.",
+      after: "Now I write without obsessing — and actually finish my sections.",
+      beforeHighlight: ["rewriting", "over and over"],
+      afterHighlight: ["without obsessing", "actually finish"]
+    },
+    {
+      before: "I don't know what my chapters should even look like.",
+      after: "Now I know exactly how my thesis is structured — and why.",
+      beforeHighlight: ["don't know", "should even look like"],
+      afterHighlight: ["know exactly", "structured"]
+    },
+    {
+      before: "I feel completely alone in this process.",
+      after: "Now I have support — and I don't feel stuck or isolated anymore.",
+      beforeHighlight: ["completely alone"],
+      afterHighlight: ["have support", "don't feel stuck", "isolated anymore"]
+    }
+  ];
+
   const highlightText = (text: string, highlights: string[], isPositive: boolean = false) => {
     let highlightedText = text;
     highlights.forEach(highlight => {
@@ -53,6 +92,8 @@ const Services = () => {
     });
     return highlightedText;
   };
+
+  const currentExamples = isBusinessOwner ? businessExamples : studentExamples;
 
   return (
     <section className="py-16 sm:py-20 bg-gray-50" id="services">
@@ -75,71 +116,41 @@ const Services = () => {
               }
             </p>
 
-            {isBusinessOwner && (
-              <p className="text-lg text-gray-600">
-                Before and after coaching:
-              </p>
-            )}
+            <p className="text-lg text-gray-600">
+              Before and after coaching:
+            </p>
+            <p className="text-lg text-gray-600 mt-2">
+              Transform this into <span className="text-pulse-500 font-semibold">THIS</span>
+            </p>
           </div>
           
-          {isBusinessOwner ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {businessExamples.map((example, index) => (
-                <div
-                  key={index}
-                  className="bg-white rounded-xl p-6 shadow-elegant hover:shadow-elegant-hover transition-all duration-300 flex flex-col justify-center min-h-[200px]"
-                >
-                  <div className="space-y-4">
-                    <div className="text-center">
-                      <h4 className="text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wide">Transform this</h4>
-                      <p 
-                        className="text-base text-gray-700 leading-relaxed mb-3"
-                        dangerouslySetInnerHTML={{
-                          __html: highlightText(example.before, example.beforeHighlight)
-                        }}
-                      />
-                    </div>
-                    <div className="border-t border-gray-100 pt-3">
-                      <h4 className="text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wide text-center">Into THIS</h4>
-                      <p 
-                        className="text-base text-gray-700 leading-relaxed text-center"
-                        dangerouslySetInnerHTML={{
-                          __html: highlightText(example.after, example.afterHighlight, true)
-                        }}
-                      />
-                    </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {currentExamples.map((example, index) => (
+              <div
+                key={index}
+                className="bg-white rounded-xl p-6 shadow-elegant hover:shadow-elegant-hover transition-all duration-300 flex flex-col justify-center min-h-[200px]"
+              >
+                <div className="space-y-4">
+                  <div className="text-center">
+                    <p 
+                      className="text-base text-gray-700 leading-relaxed mb-3"
+                      dangerouslySetInnerHTML={{
+                        __html: highlightText(example.before, example.beforeHighlight)
+                      }}
+                    />
+                  </div>
+                  <div className="border-t border-gray-100 pt-3">
+                    <p 
+                      className="text-base text-gray-700 leading-relaxed text-center"
+                      dangerouslySetInnerHTML={{
+                        __html: highlightText(example.after, example.afterHighlight, true)
+                      }}
+                    />
                   </div>
                 </div>
-              ))}
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              <div className="bg-white rounded-2xl p-8 shadow-elegant hover:shadow-elegant-hover transition-all duration-300 hover:-translate-y-2">
-                <h3 className="text-xl font-semibold mb-4 text-gray-900">
-                  Thesis Blueprint Session
-                </h3>
-                <p className="text-gray-600">
-                  Map your thesis in one go.
-                </p>
               </div>
-              <div className="bg-white rounded-2xl p-8 shadow-elegant hover:shadow-elegant-hover transition-all duration-300 hover:-translate-y-2">
-                <h3 className="text-xl font-semibold mb-4 text-gray-900">
-                  Burnout Recovery Tools
-                </h3>
-                <p className="text-gray-600">
-                  Get motivated again—without pressure.
-                </p>
-              </div>
-              <div className="bg-white rounded-2xl p-8 shadow-elegant hover:shadow-elegant-hover transition-all duration-300 hover:-translate-y-2">
-                <h3 className="text-xl font-semibold mb-4 text-gray-900">
-                  Weekly Focus Check-ins
-                </h3>
-                <p className="text-gray-600">
-                  Stay on track, step by step.
-                </p>
-              </div>
-            </div>
-          )}
+            ))}
+          </div>
         </div>
       </div>
     </section>

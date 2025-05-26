@@ -45,6 +45,24 @@ const testimonials: TestimonialProps[] = [
     author: "Luca, MA Student",
     type: 'student', 
     backgroundImage: "/background-section3.png"
+  },
+  {
+    content: "I cannot explain how much I appreciate your help",
+    author: "Rolf Schmidt",
+    type: 'business',
+    backgroundImage: "/lovable-uploads/af80891e-bc32-4f2d-be17-f68760691935.png"
+  },
+  {
+    content: "Thanks for giving so much definition and clarity to things! I look forward to reaching out a lot more.",
+    author: "Client",
+    type: 'business',
+    backgroundImage: "/lovable-uploads/6e354870-1a4e-4adc-a832-28c06dcb5472.png"
+  },
+  {
+    content: "I struggled with outlining my tasks till I hop on a call with @ThanksRolf for helped me find clarity",
+    author: "Jamila",
+    type: 'student',
+    backgroundImage: "/lovable-uploads/beefa930-448f-40bc-86ac-7f7a019bc763.png"
   }
 ];
 
