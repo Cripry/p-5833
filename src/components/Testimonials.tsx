@@ -10,57 +10,22 @@ interface TestimonialProps {
 }
 
 const testimonials: TestimonialProps[] = [
+
   {
-    content: "Went from scattered ideas to a launched product in 10 days.",
-    author: "Alex",
-    type: 'business',
-    backgroundImage: "/background-section1.png"
-  },
-  {
-    content: "I finally stopped stressing and started writing. Huge relief!",
-    author: "Eva", 
-    type: 'student',
-    backgroundImage: "/background-section2.png"
-  },
-  {
-    content: "My content strategy went from 'random' to clear, weekly priorities.",
-    author: "Shana",
-    type: 'business',
-    backgroundImage: "/background-section3.png"
-  },
-  {
-    content: "One clarity session saved me at least 10 hours of wasted effort.",
-    author: "Dan",
-    type: 'business',
-    backgroundImage: "/background-section1.png"
-  },
-  {
-    content: "I had no idea what my chapters should look like. Now I'm 80% done!",
-    author: "Marta, PhD Student",
-    type: 'student',
-    backgroundImage: "/background-section2.png"
-  },
-  {
-    content: "The clarity session made everything feel doable. It saved me.",
-    author: "Luca, MA Student",
-    type: 'student', 
-    backgroundImage: "/background-section3.png"
-  },
-  {
-    content: "I cannot explain how much I appreciate your help",
-    author: "Rolf Schmidt",
+    content: "",
+    author: "",
     type: 'business',
     backgroundImage: "/lovable-uploads/af80891e-bc32-4f2d-be17-f68760691935.png"
   },
   {
-    content: "Thanks for giving so much definition and clarity to things! I look forward to reaching out a lot more.",
-    author: "Client",
+    content: "",
+    author: "",
     type: 'business',
     backgroundImage: "/lovable-uploads/6e354870-1a4e-4adc-a832-28c06dcb5472.png"
   },
   {
-    content: "I struggled with outlining my tasks till I hop on a call with @ThanksRolf for helped me find clarity",
-    author: "Jamila",
+    content: "",
+    author: "",
     type: 'student',
     backgroundImage: "/lovable-uploads/beefa930-448f-40bc-86ac-7f7a019bc763.png"
   }
