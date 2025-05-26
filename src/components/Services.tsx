@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -35,6 +36,12 @@ const Services = () => {
       after: "Now I have a clear framework — not just more information.",
       beforeHighlight: ["spinning my wheels"],
       afterHighlight: ["clear framework"]
+    },
+    {
+      before: "I know what I want... I just don't know how to get there.",
+      after: "Now I have a concrete step-by-step plan to get where I want to go.",
+      beforeHighlight: ["don't know how"],
+      afterHighlight: ["concrete step-by-step plan"]
     }
   ];
 
@@ -76,26 +83,26 @@ const Services = () => {
           </div>
           
           {isBusinessOwner ? (
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {businessExamples.map((example, index) => (
                 <div
                   key={index}
-                  className="bg-white rounded-2xl p-8 shadow-elegant hover:shadow-elegant-hover transition-all duration-300"
+                  className="bg-white rounded-xl p-6 shadow-elegant hover:shadow-elegant-hover transition-all duration-300 aspect-square flex flex-col justify-center"
                 >
-                  <div className="space-y-6">
-                    <div className="pb-4 border-b border-gray-100">
-                      <h4 className="text-sm font-semibold text-gray-500 mb-2 uppercase tracking-wide">Before</h4>
+                  <div className="space-y-4">
+                    <div className="text-center">
+                      <h4 className="text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wide">Transform this</h4>
                       <p 
-                        className="text-gray-700 leading-relaxed"
+                        className="text-sm text-gray-700 leading-relaxed mb-3"
                         dangerouslySetInnerHTML={{
                           __html: highlightText(example.before, example.beforeHighlight)
                         }}
                       />
                     </div>
-                    <div>
-                      <h4 className="text-sm font-semibold text-gray-500 mb-2 uppercase tracking-wide">After</h4>
+                    <div className="border-t border-gray-100 pt-3">
+                      <h4 className="text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wide text-center">Into THIS</h4>
                       <p 
-                        className="text-gray-700 leading-relaxed"
+                        className="text-sm text-gray-700 leading-relaxed text-center"
                         dangerouslySetInnerHTML={{
                           __html: highlightText(example.after, example.afterHighlight, true)
                         }}
