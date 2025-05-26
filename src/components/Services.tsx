@@ -1,69 +1,56 @@
-
 import React, { useState, useEffect } from "react";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { useLocation } from "react-router-dom";
 
 const Services = () => {
-  const [isBusinessOwner, setIsBusinessOwner] = useState(true);
-  const [activeAccordion, setActiveAccordion] = useState<string | null>(null);
+  const location = useLocation();
+  const isBusinessOwner = location.pathname === '/business-owner';
 
-  useEffect(() => {
-    const handleStorageChange = () => {
-      const toggleState = localStorage.getItem('isBusinessOwner');
-      if (toggleState !== null) {
-        setIsBusinessOwner(JSON.parse(toggleState));
-      }
-    };
-    
-    window.addEventListener('storage', handleStorageChange);
-    return () => window.removeEventListener('storage', handleStorageChange);
-  }, []);
-
-  const businessServices = [
+  const businessExamples = [
     {
-      id: "clarity-mapping",
-      title: "Clarity Mapping (60 mins)",
-      description: "Turn chaos into a clear plan."
+      before: "I have so many business ideas, but I can't figure out which one to focus on.",
+      after: "Now I have a clear roadmap and know exactly what to work on.",
+      beforeHighlight: ["so many", "can't figure out"],
+      afterHighlight: ["clear roadmap", "exactly"]
     },
     {
-      id: "strategic-thinking",
-      title: "Strategic Thinking Coaching",
-      description: "Focus on what matters. Ditch the noise."
+      before: "I feel like I'm building five businesses at once — and none are working.",
+      after: "Now I've simplified everything into one aligned, focused strategy.",
+      beforeHighlight: ["five businesses at once", "none are working"],
+      afterHighlight: ["simplified", "aligned, focused strategy"]
     },
     {
-      id: "decision-frameworks",
-      title: "Decision Frameworks",
-      description: "Move faster. Stress less."
+      before: "I second-guess every decision and waste hours overthinking.",
+      after: "Now I make decisions faster, with confidence and clarity.",
+      beforeHighlight: ["second-guess", "waste hours", "overthinking"],
+      afterHighlight: ["faster", "confidence and clarity"]
+    },
+    {
+      before: "I don't have a real strategy — I'm just reacting all the time.",
+      after: "Now I lead with a strategy that's built around my priorities.",
+      beforeHighlight: ["don't have", "just reacting"],
+      afterHighlight: ["lead with a strategy", "my priorities"]
+    },
+    {
+      before: "I've invested in courses and tools, but I'm still spinning my wheels.",
+      after: "Now I have a clear framework — not just more information.",
+      beforeHighlight: ["spinning my wheels"],
+      afterHighlight: ["clear framework"]
     }
   ];
 
-  const studentServices = [
-    {
-      id: "thesis-blueprint",
-      title: "Thesis Blueprint Session",
-      description: "Map your thesis in one go."
-    },
-    {
-      id: "burnout-recovery",
-      title: "Burnout Recovery Tools",
-      description: "Get motivated again—without pressure."
-    },
-    {
-      id: "focus-checkins",
-      title: "Weekly Focus Check-ins",
-      description: "Stay on track, step by step."
-    }
-  ];
-
-  const services = isBusinessOwner ? businessServices : studentServices;
-
-  const toggleAccordion = (id: string) => {
-    setActiveAccordion(activeAccordion === id ? null : id);
+  const highlightText = (text: string, highlights: string[], isPositive: boolean = false) => {
+    let highlightedText = text;
+    highlights.forEach(highlight => {
+      const regex = new RegExp(`(${highlight})`, 'gi');
+      highlightedText = highlightedText.replace(regex, `<span class="text-pulse-500 font-semibold">$1</span>`);
+    });
+    return highlightedText;
   };
 
   return (
     <section className="py-16 sm:py-20 bg-gray-50" id="services">
       <div className="section-container">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <div className="pulse-chip mx-auto mb-6">
               <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-pulse-500 text-white mr-2">02</span>
@@ -74,62 +61,78 @@ const Services = () => {
               How I Help
             </h2>
             
-            <p className="text-xl text-gray-700">
+            <p className="text-xl text-gray-700 mb-8">
               {isBusinessOwner 
                 ? "Strategic support for business owners who need clarity and focus."
                 : "Specialized guidance for students struggling with thesis completion."
               }
             </p>
+
+            {isBusinessOwner && (
+              <p className="text-lg text-gray-600">
+                Before and after coaching:
+              </p>
+            )}
           </div>
           
-          {/* Desktop View */}
-          <div className="hidden md:grid md:grid-cols-1 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <div
-                key={service.id}
-                className="bg-white rounded-2xl p-8 shadow-elegant hover:shadow-elegant-hover transition-all duration-300 hover:-translate-y-2"
-              >
+          {isBusinessOwner ? (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {businessExamples.map((example, index) => (
+                <div
+                  key={index}
+                  className="bg-white rounded-2xl p-8 shadow-elegant hover:shadow-elegant-hover transition-all duration-300"
+                >
+                  <div className="space-y-6">
+                    <div className="pb-4 border-b border-gray-100">
+                      <h4 className="text-sm font-semibold text-gray-500 mb-2 uppercase tracking-wide">Before</h4>
+                      <p 
+                        className="text-gray-700 leading-relaxed"
+                        dangerouslySetInnerHTML={{
+                          __html: highlightText(example.before, example.beforeHighlight)
+                        }}
+                      />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-500 mb-2 uppercase tracking-wide">After</h4>
+                      <p 
+                        className="text-gray-700 leading-relaxed"
+                        dangerouslySetInnerHTML={{
+                          __html: highlightText(example.after, example.afterHighlight, true)
+                        }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <div className="bg-white rounded-2xl p-8 shadow-elegant hover:shadow-elegant-hover transition-all duration-300 hover:-translate-y-2">
                 <h3 className="text-xl font-semibold mb-4 text-gray-900">
-                  {service.title}
+                  Thesis Blueprint Session
                 </h3>
                 <p className="text-gray-600">
-                  {service.description}
+                  Map your thesis in one go.
                 </p>
               </div>
-            ))}
-          </div>
-          
-          {/* Mobile Accordion View */}
-          <div className="md:hidden space-y-4">
-            {services.map((service, index) => (
-              <div
-                key={service.id}
-                className="bg-white rounded-xl shadow-md overflow-hidden"
-              >
-                <button
-                  onClick={() => toggleAccordion(service.id)}
-                  className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors"
-                >
-                  <h3 className="text-lg font-semibold text-gray-900">
-                    {service.title}
-                  </h3>
-                  {activeAccordion === service.id ? (
-                    <ChevronUp className="w-5 h-5 text-pulse-500" />
-                  ) : (
-                    <ChevronDown className="w-5 h-5 text-gray-400" />
-                  )}
-                </button>
-                
-                {activeAccordion === service.id && (
-                  <div className="px-6 pb-4">
-                    <p className="text-gray-600">
-                      {service.description}
-                    </p>
-                  </div>
-                )}
+              <div className="bg-white rounded-2xl p-8 shadow-elegant hover:shadow-elegant-hover transition-all duration-300 hover:-translate-y-2">
+                <h3 className="text-xl font-semibold mb-4 text-gray-900">
+                  Burnout Recovery Tools
+                </h3>
+                <p className="text-gray-600">
+                  Get motivated again—without pressure.
+                </p>
               </div>
-            ))}
-          </div>
+              <div className="bg-white rounded-2xl p-8 shadow-elegant hover:shadow-elegant-hover transition-all duration-300 hover:-translate-y-2">
+                <h3 className="text-xl font-semibold mb-4 text-gray-900">
+                  Weekly Focus Check-ins
+                </h3>
+                <p className="text-gray-600">
+                  Stay on track, step by step.
+                </p>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </section>
