@@ -65,10 +65,10 @@ const Student = () => {
         <Services />
         <HowItWorks />
         <Testimonials />
-        <About />
         <Pricing variant="student" />
         <FAQ variant="student" />
         <FreeTools />
+        <About />
       </main>
       <Footer />
     </div>

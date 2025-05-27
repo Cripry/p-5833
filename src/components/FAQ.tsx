@@ -105,21 +105,21 @@ const FAQ = ({ variant = "business" }: FAQProps) => {
   const visibleFAQs = showAll ? faqs : faqs.slice(0, 5);
 
   return (
-    <section className="py-8 sm:py-12 bg-gray-50" id="faq">
+    <section className="py-16 sm:py-20 bg-gray-50" id="faq">
       <div className="section-container">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-8">
-            <div className="pulse-chip mx-auto mb-4">
-              <span className="inline-flex items-center justify-center w-3 h-3 rounded-full bg-pulse-500 text-white mr-2 text-xs">06</span>
-              <span className="text-sm">FAQ</span>
+          <div className="text-center mb-12">
+            <div className="pulse-chip mx-auto mb-6">
+              <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-pulse-500 text-white mr-2">06</span>
+              <span>FAQ</span>
             </div>
             
-            <h2 className="text-2xl sm:text-3xl font-bold mb-4">
-              Întrebări frecvente
+            <h2 className="text-4xl sm:text-5xl font-bold mb-4">
+              FAQ
             </h2>
             
             <p className="text-gray-600 text-lg">
-              Tot ce trebuie să știi despre Fintaxy AI și cum poate ajuta afacerea ta
+              Everything you need to know about Tharsis and how it can help you
             </p>
           </div>
 

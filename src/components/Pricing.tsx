@@ -31,7 +31,6 @@ const Pricing = ({ variant = "business" }: PricingProps) => {
     {
       id: "discovery",
       title: "Free Discovery Call",
-      subtitle: "Step 1",
       price: "0 EUR",
       features: [
         "30-min 1:1 call",
@@ -42,13 +41,12 @@ const Pricing = ({ variant = "business" }: PricingProps) => {
       ],
       ctaText: "Book Free Call",
       highlighted: false,
-      bgColor: "bg-green-50",
-      borderColor: "border-green-200"
+      bgColor: "bg-orange-50",
+      borderColor: "border-orange-200"
     },
     {
       id: "clarity",
       title: "One-Time Clarity Session",
-      subtitle: "Step 2",
       price: "80 EUR",
       idealFor: "First-timers needing quick clarity",
       features: [
@@ -67,7 +65,6 @@ const Pricing = ({ variant = "business" }: PricingProps) => {
     {
       id: "focus-booster",
       title: "Focus Booster – 4 Sessions",
-      subtitle: "Step 3",
       price: "200 EUR",
       idealFor: "Best Value: Build clarity + momentum",
       features: [
@@ -86,7 +83,6 @@ const Pricing = ({ variant = "business" }: PricingProps) => {
     {
       id: "momentum",
       title: "Monthly Momentum Plan",
-      subtitle: "Step 4", 
       price: "400 EUR/month",
       idealFor: "High-stakes goals & busy minds",
       features: [
@@ -98,32 +94,32 @@ const Pricing = ({ variant = "business" }: PricingProps) => {
       ],
       ctaText: "Start Monthly Coaching",
       highlighted: false,
-      bgColor: "bg-blue-50",
-      borderColor: "border-blue-200",
+      bgColor: "bg-orange-50",
+      borderColor: "border-orange-200",
       personalization: getPersonalization(4)
     }
   ];
 
   return (
-    <section className="py-6 sm:py-8 bg-white" id="pricing">
-      <div className="section-container w-full">
+    <section className="py-16 sm:py-20 bg-white" id="pricing">
+      <div className="section-container">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-4">
-            <div className="pulse-chip mx-auto mb-2">
-              <span className="inline-flex items-center justify-center w-3 h-3 rounded-full bg-pulse-500 text-white mr-1 text-xs">05</span>
-              <span className="text-xs">Pricing</span>
+          <div className="text-center mb-12">
+            <div className="pulse-chip mx-auto mb-6">
+              <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-pulse-500 text-white mr-2">05</span>
+              <span>Pricing</span>
             </div>
             
-            <h2 className="text-xl sm:text-2xl font-bold mb-2">
+            <h2 className="text-4xl sm:text-5xl font-bold mb-4">
               Work With Me
             </h2>
             
-            <p className="text-xs text-gray-700 mb-3">
+            <p className="text-gray-600 text-lg">
               Choose the level of support that fits your needs and goals.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {pricingPlans.map((plan) => (
               <Card 
                 key={plan.id} 
@@ -135,53 +131,52 @@ const Pricing = ({ variant = "business" }: PricingProps) => {
               >
                 {plan.highlighted && (
                   <div className="absolute -top-2 left-1/2 transform -translate-x-1/2">
-                    <div className="bg-pulse-500 text-white px-2 py-0.5 rounded-full text-xs font-medium">
+                    <div className="bg-pulse-500 text-white px-3 py-1 rounded-full text-sm font-medium">
                       Best Value
                     </div>
                   </div>
                 )}
                 
-                <CardHeader className="text-center pb-2 px-3 pt-3">
-                  <div className="text-xs text-gray-500 font-medium">{plan.subtitle}</div>
-                  <CardTitle className="text-sm font-bold mb-1">{plan.title}</CardTitle>
-                  <div className={`text-lg font-bold ${plan.highlighted ? 'text-pulse-500' : 'text-gray-900'}`}>
+                <CardHeader className="text-center pb-4 px-6 pt-6">
+                  <CardTitle className="text-xl font-bold mb-3">{plan.title}</CardTitle>
+                  <div className={`text-2xl font-bold ${plan.highlighted ? 'text-pulse-500' : 'text-gray-900'}`}>
                     {plan.price}
                   </div>
                 </CardHeader>
                 
-                <CardContent className="space-y-2 px-3 pb-3">
+                <CardContent className="space-y-4 px-6 pb-6">
                   {plan.idealFor && (
-                    <div className="mb-2 p-1.5 bg-white/70 rounded-lg border border-gray-200">
-                      <p className="text-xs text-gray-700 font-medium">
+                    <div className="mb-4 p-3 bg-white/70 rounded-lg border border-gray-200">
+                      <p className="text-sm text-gray-700 font-medium">
                         {plan.idealFor}
                       </p>
                     </div>
                   )}
 
                   {plan.personalization && (
-                    <div className="mb-2 p-1.5 bg-pulse-100 rounded-lg border border-pulse-200">
-                      <p className="text-xs text-pulse-700 font-medium">
+                    <div className="mb-4 p-3 bg-pulse-100 rounded-lg border border-pulse-200">
+                      <p className="text-sm text-pulse-700 font-medium">
                         {plan.personalization}
                       </p>
                     </div>
                   )}
                   
-                  <ul className="space-y-1.5">
+                  <ul className="space-y-3">
                     {plan.features.map((feature, index) => (
-                      <li key={index} className="flex items-start space-x-1.5">
-                        <Check className={`w-3 h-3 mt-0.5 flex-shrink-0 ${
+                      <li key={index} className="flex items-start space-x-3">
+                        <Check className={`w-4 h-4 mt-0.5 flex-shrink-0 ${
                           plan.highlighted ? 'text-pulse-500' : 'text-green-500'
                         }`} />
-                        <span className="text-xs text-gray-700">
+                        <span className="text-sm text-gray-700">
                           {feature}
                         </span>
                       </li>
                     ))}
                   </ul>
                   
-                  <div className="pt-2">
+                  <div className="pt-4">
                     <Button 
-                      className={`w-full font-medium py-1.5 text-xs ${
+                      className={`w-full font-medium py-3 text-sm ${
                         plan.highlighted 
                           ? 'bg-pulse-500 hover:bg-pulse-600 text-white' 
                           : 'bg-gray-100 hover:bg-gray-200 text-gray-800 border border-gray-300'

@@ -14,7 +14,7 @@ const About = () => {
       <div className="section-container">
         <div className="max-w-4xl mx-auto">
           <div className="pulse-chip mb-6">
-            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-pulse-500 text-white mr-2">06</span>
+            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-pulse-500 text-white mr-2">07</span>
             <span>About</span>
           </div>
           
