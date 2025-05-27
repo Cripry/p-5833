@@ -64,7 +64,7 @@ const Student = () => {
         <Services />
         <HowItWorks />
         <Testimonials />
-        <Pricing />
+        <Pricing variant="student" />
         <FreeTools />
         <About />
       </main>

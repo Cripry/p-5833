@@ -64,7 +64,7 @@ const BusinessOwner = () => {
         <Services />
         <HowItWorks />
         <Testimonials />
-        <Pricing />
+        <Pricing variant="business" />
         <FreeTools />
         <About />
       </main>
