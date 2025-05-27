@@ -94,8 +94,8 @@ const Pricing = ({ variant = "business" }: PricingProps) => {
       ],
       ctaText: "Start Monthly Coaching",
       highlighted: false,
-      bgColor: "bg-neutral-50",
-      borderColor: "border-neutral-200",
+      bgColor: "bg-sky-50",
+      borderColor: "border-sky-200",
       personalization: getPersonalization(4)
     }
   ];
