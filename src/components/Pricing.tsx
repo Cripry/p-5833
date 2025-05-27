@@ -9,70 +9,23 @@ interface PricingProps {
 }
 
 const Pricing = ({ variant = "business" }: PricingProps) => {
-  const getStepTwoContent = () => {
+  const getPersonalization = (step: number) => {
     if (variant === "student") {
-      return {
-        title: "One-Time Clarity Session",
-        subtitle: "Step 2",
-        price: "80 EUR",
-        idealFor: "Students who feel stuck or behind on their thesis",
-        features: [
-          "60-minute 1:1 coaching session",
-          "A chapter-by-chapter overview of your thesis plan",
-          "Clarity on what to write next — and what to skip for now",
-          "Personalized structure to stop starting over again and again",
-          "Support to stop delaying everything until the last night"
-        ]
-      };
+      switch (step) {
+        case 2: return "Thesis outline & first steps";
+        case 3: return "Weekly accountability & chapter plan";
+        case 4: return "Finish thesis with focus & structure";
+        default: return "";
+      }
+    } else {
+      switch (step) {
+        case 2: return "Clarity for ideas & action roadmap";
+        case 3: return "Weekly strategy for launch or growth";
+        case 4: return "Long-term support to scale and focus";
+        default: return "";
+      }
     }
-    return {
-      title: "One-Time Clarity Session",
-      subtitle: "Step 2", 
-      price: "80 EUR",
-      idealFor: "New business owners who feel overwhelmed by scattered ideas",
-      features: [
-        "60-minute 1:1 coaching session",
-        "A clear project map with timelines and priority checkpoints",
-        "Clarity on what comes first vs what can wait",
-        "A focused 90-day action plan to avoid spinning in circles",
-        "Tools to overcome procrastination and \"what now?\" moments"
-      ]
-    };
   };
-
-  const getStepThreeContent = () => {
-    if (variant === "student") {
-      return {
-        title: "Monthly Momentum Plan",
-        subtitle: "Step 3",
-        price: "200 EUR/month",
-        idealFor: "Students who want to stop panicking and start progressing",
-        features: [
-          "Weekly planning to stay ahead of deadlines, not chase them",
-          "Break your work into bite-sized tasks with built-in accountability",
-          "Regular feedback on progress and direction",
-          "Daily check-ins to stay focused without burning out",
-          "Reduce mental pressure and know exactly what to do each week"
-        ]
-      };
-    }
-    return {
-      title: "Monthly Momentum Plan",
-      subtitle: "Step 3",
-      price: "200 EUR/month",
-      idealFor: "Solopreneurs building under pressure",
-      features: [
-        "A custom launch & strategy roadmap (mapped to weeks)",
-        "Weekly sessions to keep ideas aligned and focused",
-        "Priority check-ins to prevent burnout or wasted effort",
-        "Support on decision-making, offers, messaging, and next moves",
-        "A partner who tracks momentum and helps you finish what you start"
-      ]
-    };
-  };
-
-  const stepTwoContent = getStepTwoContent();
-  const stepThreeContent = getStepThreeContent();
 
   const pricingPlans = [
     {
@@ -81,95 +34,142 @@ const Pricing = ({ variant = "business" }: PricingProps) => {
       subtitle: "Step 1",
       price: "0 EUR",
       features: [
-        "30-minute 1-on-1 Zoom meet",
-        "Understand your current challenges", 
-        "See if coaching is the right fit",
-        "Ask anything, no pressure",
-        "Personalized recommendations"
+        "30-min 1:1 call",
+        "Explore current challenge", 
+        "See if we're a fit",
+        "Ask anything",
+        "Simple recommendations"
       ],
-      ctaText: "🔍 Book Free Call",
-      highlighted: false
+      ctaText: "Book Free Call",
+      highlighted: false,
+      bgColor: "bg-green-50",
+      borderColor: "border-green-200"
     },
     {
       id: "clarity",
-      title: stepTwoContent.title,
-      subtitle: stepTwoContent.subtitle,
-      price: stepTwoContent.price,
-      idealFor: stepTwoContent.idealFor,
-      features: stepTwoContent.features,
-      ctaText: "🚀 Try a Full Clarity Session",
-      highlighted: true
+      title: "One-Time Clarity Session",
+      subtitle: "Step 2",
+      price: "80 EUR",
+      idealFor: "First-timers needing quick clarity",
+      features: [
+        "60-min coaching session",
+        "Map priorities",
+        "What comes first",
+        "Action plan (90 days)",
+        "Fix mental blocks"
+      ],
+      ctaText: "Try a Full Clarity Session",
+      highlighted: false,
+      bgColor: "bg-orange-50",
+      borderColor: "border-orange-200",
+      personalization: getPersonalization(2)
+    },
+    {
+      id: "focus-booster",
+      title: "Focus Booster – 4 Sessions",
+      subtitle: "Step 3",
+      price: "200 EUR",
+      idealFor: "Best Value: Build clarity + momentum",
+      features: [
+        "4x private sessions",
+        "Strategic weekly focus",
+        "Real-time clarity map",
+        "Priority check-ins",
+        "Tailored progress tracking"
+      ],
+      ctaText: "Start Focus Booster",
+      highlighted: true,
+      bgColor: "bg-yellow-50",
+      borderColor: "border-yellow-200",
+      personalization: getPersonalization(3)
     },
     {
       id: "momentum",
-      title: stepThreeContent.title,
-      subtitle: stepThreeContent.subtitle, 
-      price: stepThreeContent.price,
-      idealFor: stepThreeContent.idealFor,
-      features: stepThreeContent.features,
-      ctaText: "🔥 Start Monthly Coaching",
-      highlighted: false
+      title: "Monthly Momentum Plan",
+      subtitle: "Step 4", 
+      price: "400 EUR/month",
+      idealFor: "High-stakes goals & busy minds",
+      features: [
+        "8x sessions/month (2x/week)",
+        "Daily check-ins",
+        "On-demand support",
+        "Deep focus structure",
+        "Theme-based coaching"
+      ],
+      ctaText: "Start Monthly Coaching",
+      highlighted: false,
+      bgColor: "bg-blue-50",
+      borderColor: "border-blue-200",
+      personalization: getPersonalization(4)
     }
   ];
 
   return (
-    <section className="py-8 sm:py-12 bg-white h-[40vh] flex items-center" id="pricing">
+    <section className="py-6 sm:py-8 bg-white h-[40vh] flex items-center" id="pricing">
       <div className="section-container w-full">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-6">
-            <div className="pulse-chip mx-auto mb-3">
-              <span className="inline-flex items-center justify-center w-4 h-4 rounded-full bg-pulse-500 text-white mr-2 text-xs">05</span>
+          <div className="text-center mb-4">
+            <div className="pulse-chip mx-auto mb-2">
+              <span className="inline-flex items-center justify-center w-3 h-3 rounded-full bg-pulse-500 text-white mr-1 text-xs">05</span>
               <span className="text-xs">Pricing</span>
             </div>
             
-            <h2 className="text-2xl sm:text-3xl font-bold mb-3">
+            <h2 className="text-xl sm:text-2xl font-bold mb-2">
               Work With Me
             </h2>
             
-            <p className="text-sm text-gray-700 mb-4">
+            <p className="text-xs text-gray-700 mb-3">
               Choose the level of support that fits your needs and goals.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
             {pricingPlans.map((plan) => (
               <Card 
                 key={plan.id} 
                 className={`relative transition-all duration-300 hover:shadow-elegant-hover ${
                   plan.highlighted 
                     ? 'border-2 border-pulse-500 shadow-elegant-hover scale-105' 
-                    : 'border border-gray-200 shadow-elegant hover:scale-102'
-                }`}
+                    : `border ${plan.borderColor} shadow-elegant hover:scale-102`
+                } ${plan.bgColor}`}
               >
                 {plan.highlighted && (
-                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                    <div className="bg-pulse-500 text-white px-3 py-1 rounded-full text-xs font-medium">
-                      Most Popular
+                  <div className="absolute -top-2 left-1/2 transform -translate-x-1/2">
+                    <div className="bg-pulse-500 text-white px-2 py-0.5 rounded-full text-xs font-medium">
+                      Best Value
                     </div>
                   </div>
                 )}
                 
-                <CardHeader className="text-center pb-3">
+                <CardHeader className="text-center pb-2 px-3 pt-3">
                   <div className="text-xs text-gray-500 font-medium">{plan.subtitle}</div>
-                  <CardTitle className="text-lg font-bold mb-2">{plan.title}</CardTitle>
-                  <div className={`text-xl font-bold ${plan.highlighted ? 'text-pulse-500' : 'text-gray-900'}`}>
+                  <CardTitle className="text-sm font-bold mb-1">{plan.title}</CardTitle>
+                  <div className={`text-lg font-bold ${plan.highlighted ? 'text-pulse-500' : 'text-gray-900'}`}>
                     {plan.price}
                   </div>
                 </CardHeader>
                 
-                <CardContent className="space-y-3">
+                <CardContent className="space-y-2 px-3 pb-3">
                   {plan.idealFor && (
-                    <div className="mb-3 p-2 bg-pulse-50 rounded-lg border border-pulse-200">
+                    <div className="mb-2 p-1.5 bg-white/70 rounded-lg border border-gray-200">
+                      <p className="text-xs text-gray-700 font-medium">
+                        {plan.idealFor}
+                      </p>
+                    </div>
+                  )}
+
+                  {plan.personalization && (
+                    <div className="mb-2 p-1.5 bg-pulse-100 rounded-lg border border-pulse-200">
                       <p className="text-xs text-pulse-700 font-medium">
-                        📌 Ideal for: {plan.idealFor}
+                        {plan.personalization}
                       </p>
                     </div>
                   )}
                   
-                  <ul className="space-y-2">
+                  <ul className="space-y-1.5">
                     {plan.features.map((feature, index) => (
-                      <li key={index} className="flex items-start space-x-2">
-                        <Check className={`w-4 h-4 mt-0.5 flex-shrink-0 ${
+                      <li key={index} className="flex items-start space-x-1.5">
+                        <Check className={`w-3 h-3 mt-0.5 flex-shrink-0 ${
                           plan.highlighted ? 'text-pulse-500' : 'text-green-500'
                         }`} />
                         <span className="text-xs text-gray-700">
@@ -179,9 +179,9 @@ const Pricing = ({ variant = "business" }: PricingProps) => {
                     ))}
                   </ul>
                   
-                  <div className="pt-3">
+                  <div className="pt-2">
                     <Button 
-                      className={`w-full font-medium py-2 text-xs ${
+                      className={`w-full font-medium py-1.5 text-xs ${
                         plan.highlighted 
                           ? 'bg-pulse-500 hover:bg-pulse-600 text-white' 
                           : 'bg-gray-100 hover:bg-gray-200 text-gray-800 border border-gray-300'
