@@ -6,6 +6,7 @@ import Services from "@/components/Services";
 import HowItWorks from "@/components/HowItWorks";
 import Testimonials from "@/components/Testimonials";
 import Pricing from "@/components/Pricing";
+import FAQ from "@/components/FAQ";
 import FreeTools from "@/components/FreeTools";
 import About from "@/components/About";
 import Footer from "@/components/Footer";
@@ -64,9 +65,10 @@ const Student = () => {
         <Services />
         <HowItWorks />
         <Testimonials />
-        <Pricing variant="student" />
-        <FreeTools />
         <About />
+        <Pricing variant="student" />
+        <FAQ variant="student" />
+        <FreeTools />
       </main>
       <Footer />
     </div>

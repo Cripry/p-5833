@@ -6,6 +6,7 @@ import Services from "@/components/Services";
 import HowItWorks from "@/components/HowItWorks";
 import Testimonials from "@/components/Testimonials";
 import Pricing from "@/components/Pricing";
+import FAQ from "@/components/FAQ";
 import FreeTools from "@/components/FreeTools";
 import About from "@/components/About";
 import Footer from "@/components/Footer";
@@ -64,9 +65,10 @@ const BusinessOwner = () => {
         <Services />
         <HowItWorks />
         <Testimonials />
-        <Pricing variant="business" />
-        <FreeTools />
         <About />
+        <Pricing variant="business" />
+        <FAQ variant="business" />
+        <FreeTools />
       </main>
       <Footer />
     </div>

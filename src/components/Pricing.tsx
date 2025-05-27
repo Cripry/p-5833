@@ -105,7 +105,7 @@ const Pricing = ({ variant = "business" }: PricingProps) => {
   ];
 
   return (
-    <section className="py-6 sm:py-8 bg-white h-[40vh] flex items-center" id="pricing">
+    <section className="py-6 sm:py-8 bg-white" id="pricing">
       <div className="section-container w-full">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-4">
