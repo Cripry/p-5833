@@ -41,8 +41,8 @@ const Pricing = ({ variant = "business" }: PricingProps) => {
       ],
       ctaText: "Book Free Call",
       highlighted: false,
-      bgColor: "bg-orange-50",
-      borderColor: "border-orange-200"
+      bgColor: "bg-white",
+      borderColor: "bg-white"
     },
     {
       id: "clarity",
@@ -58,8 +58,8 @@ const Pricing = ({ variant = "business" }: PricingProps) => {
       ],
       ctaText: "Try a Full Clarity Session",
       highlighted: false,
-      bgColor: "bg-orange-50",
-      borderColor: "border-orange-200",
+      bgColor: "bg-white",
+      borderColor: "bg-white",
       personalization: getPersonalization(2)
     },
     {
@@ -94,8 +94,8 @@ const Pricing = ({ variant = "business" }: PricingProps) => {
       ],
       ctaText: "Start Monthly Coaching",
       highlighted: false,
-      bgColor: "bg-orange-50",
-      borderColor: "border-orange-200",
+      bgColor: "bg-neutral-50",
+      borderColor: "border-neutral-200",
       personalization: getPersonalization(4)
     }
   ];
