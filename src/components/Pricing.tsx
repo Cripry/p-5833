@@ -109,9 +109,7 @@ const Pricing = ({
                   ${plan.bgColor}
                 `}>
                 {plan.highlighted && <div className="absolute -top-2 left-1/2 transform -translate-x-1/2">
-                    <div className="bg-pulse-500 text-white px-3 py-1 rounded-full text-xs font-medium">
-                      Best Value
-                    </div>
+                    <div className="bg-pulse-500 text-white px-3 py-1 rounded-full text-xs font-medium">Best Choise</div>
                   </div>}
                 
                 <CardHeader className="text-center pb-3 px-4 sm:px-6 pt-4 sm:pt-6 my-[30px]">
