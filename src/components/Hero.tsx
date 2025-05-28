@@ -30,7 +30,6 @@ const Hero = () => {
   }, []);
 
   useEffect(() => {
-    // Skip effect on mobile
     if (isMobile) return;
     
     const handleMouseMove = (e: MouseEvent) => {
@@ -68,7 +67,6 @@ const Hero = () => {
   }, [isMobile]);
   
   useEffect(() => {
-    // Skip parallax on mobile
     if (isMobile) return;
     
     const handleScroll = () => {
@@ -86,7 +84,6 @@ const Hero = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isMobile]);
 
-  // Listen for toggle changes from localStorage or context if needed
   useEffect(() => {
     const handleStorageChange = () => {
       const toggleState = localStorage.getItem('isBusinessOwner');
@@ -101,20 +98,25 @@ const Hero = () => {
   
   return (
     <section 
-      className="overflow-hidden relative bg-cover min-h-screen flex items-center justify-center" 
+      className="overflow-hidden relative bg-cover min-h-screen flex items-center justify-center overflow-x-hidden" 
       id="hero" 
       style={{
         backgroundImage: 'url("/Header-background.webp")',
         backgroundPosition: 'center 30%', 
-        padding: isMobile ? '100px 12px 40px' : '120px 20px 60px'
+        padding: isMobile ? '120px 16px 60px' : '120px 20px 60px'
       }}
     >
       <div className="absolute -top-[10%] -right-[5%] w-1/2 h-[70%] bg-pulse-gradient opacity-20 blur-3xl rounded-full"></div>
       
-      <div className="container px-4 sm:px-6 lg:px-8 text-center" ref={containerRef}>
-        <div className="max-w-4xl mx-auto">
+      <div className="container px-4 sm:px-6 lg:px-8 text-center max-w-4xl mx-auto" ref={containerRef}>
+        <div className="space-y-6 sm:space-y-8">
           <h1 
-            className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight opacity-0 animate-fade-in mb-6" 
+            className={cn(
+              "font-bold leading-tight opacity-0 animate-fade-in",
+              isMobile 
+                ? "text-3xl sm:text-4xl" 
+                : "text-4xl sm:text-5xl lg:text-6xl xl:text-7xl"
+            )}
             style={{ animationDelay: "0.1s" }}
           >
             Clarity. Focus.<br />
@@ -123,7 +125,10 @@ const Hero = () => {
           
           <p 
             style={{ animationDelay: "0.3s" }} 
-            className="text-xl sm:text-2xl mb-8 leading-relaxed opacity-0 animate-fade-in text-gray-700 font-normal"
+            className={cn(
+              "leading-relaxed opacity-0 animate-fade-in text-gray-700 font-normal max-w-2xl mx-auto",
+              isMobile ? "text-lg sm:text-xl mb-6" : "text-xl sm:text-2xl mb-8"
+            )}
           >
             {isBusinessOwner 
               ? "Stuck in idea overload? Let's simplify your strategy."
@@ -136,8 +141,13 @@ const Hero = () => {
             style={{ animationDelay: "0.5s" }}
           >
             <a 
-              href="#contact" 
-              className="inline-flex items-center justify-center group w-full sm:w-auto text-center text-white font-semibold text-lg px-8 py-4 rounded-full transition-all duration-300 hover:scale-105 shadow-lg" 
+              href="#cta" 
+              className={cn(
+                "inline-flex items-center justify-center group text-center text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 shadow-lg",
+                isMobile 
+                  ? "w-full sm:w-auto text-base px-6 py-3" 
+                  : "text-lg px-8 py-4"
+              )}
               style={{
                 backgroundColor: '#FE5C02',
                 border: '1px solid white',

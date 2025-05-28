@@ -109,33 +109,37 @@ const Pricing = ({ variant = "business" }: PricingProps) => {
   ];
 
   return (
-    <section className="py-16 sm:py-20 bg-white" id="pricing">
+    <section className="py-12 sm:py-16 lg:py-20 bg-white overflow-x-hidden" id="pricing">
       <div className="section-container">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <div className="pulse-chip mx-auto mb-6">
+          <div className="text-center mb-8 sm:mb-12">
+            <div className="pulse-chip mx-auto mb-4 sm:mb-6">
               <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-pulse-500 text-white mr-2">05</span>
               <span>Pricing</span>
             </div>
             
-            <h2 className="text-4xl sm:text-5xl font-bold mb-4">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
               Work With Me
             </h2>
             
-            <p className="text-gray-600 text-lg">
+            <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto">
               Choose the level of support that fits your needs and goals.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Mobile: Stack cards vertically, Desktop: Grid layout */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {pricingPlans.map((plan) => (
               <Card 
                 key={plan.id} 
-                className={`relative transition-all duration-300 hover:shadow-elegant-hover h-full flex flex-col ${
-                  plan.highlighted 
+                className={`
+                  relative transition-all duration-300 hover:shadow-elegant-hover h-full flex flex-col
+                  ${plan.highlighted 
                     ? 'border-2 border-pulse-500 shadow-elegant-hover' 
                     : `border ${plan.borderColor} shadow-elegant hover:scale-102`
-                } ${plan.bgColor}`}
+                  } 
+                  ${plan.bgColor}
+                `}
               >
                 {plan.highlighted && (
                   <div className="absolute -top-2 left-1/2 transform -translate-x-1/2">
@@ -145,39 +149,41 @@ const Pricing = ({ variant = "business" }: PricingProps) => {
                   </div>
                 )}
                 
-                <CardHeader className="text-center pb-4 px-6 pt-6">
-                  <CardTitle className="text-lg font-bold mb-3">{plan.title}</CardTitle>
-                  <div className={`text-xl font-bold ${plan.highlighted ? 'text-pulse-500' : 'text-gray-900'}`}>
+                <CardHeader className="text-center pb-3 px-4 sm:px-6 pt-4 sm:pt-6">
+                  <CardTitle className="text-base sm:text-lg font-bold mb-2 sm:mb-3 leading-tight">
+                    {plan.title}
+                  </CardTitle>
+                  <div className={`text-lg sm:text-xl font-bold ${plan.highlighted ? 'text-pulse-500' : 'text-gray-900'}`}>
                     {plan.price}
                   </div>
                 </CardHeader>
                 
-                <CardContent className="space-y-4 px-6 pb-6 flex flex-col flex-grow">
+                <CardContent className="space-y-3 sm:space-y-4 px-4 sm:px-6 pb-4 sm:pb-6 flex flex-col flex-grow">
                   {plan.personalization && (
-                    <div className="mb-4 p-3 bg-pulse-100 rounded-lg border border-pulse-200">
-                      <p className="text-xs text-pulse-700 font-medium">
+                    <div className="mb-3 sm:mb-4 p-2 sm:p-3 bg-pulse-100 rounded-lg border border-pulse-200">
+                      <p className="text-xs text-pulse-700 font-medium leading-tight">
                         {plan.personalization}
                       </p>
                     </div>
                   )}
                   
-                  <ul className="space-y-3 flex-grow">
+                  <ul className="space-y-2 sm:space-y-3 flex-grow">
                     {plan.features.map((feature, index) => (
-                      <li key={index} className="flex items-start space-x-3">
+                      <li key={index} className="flex items-start space-x-2 sm:space-x-3">
                         <Check className={`w-4 h-4 mt-0.5 flex-shrink-0 ${
                           plan.highlighted ? 'text-pulse-500' : 'text-green-500'
                         }`} />
-                        <span className="text-xs text-gray-700">
+                        <span className="text-xs leading-relaxed text-gray-700">
                           {feature}
                         </span>
                       </li>
                     ))}
                   </ul>
                   
-                  <div className="pt-4 mt-auto">
+                  <div className="pt-3 sm:pt-4 mt-auto">
                     <Button 
                       onClick={scrollToCTA}
-                      className={`w-full font-medium py-3 text-xs ${
+                      className={`w-full font-medium py-2 sm:py-3 text-xs leading-tight ${
                         plan.highlighted 
                           ? 'bg-pulse-500 hover:bg-pulse-600 text-white' 
                           : 'bg-gray-100 hover:bg-gray-200 text-gray-800 border border-gray-300'

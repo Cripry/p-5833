@@ -221,3 +221,123 @@
   transform: translateY(var(--parallax-y, 0));
   transition: transform 0.1s ease-out;
 }
+
+/* Mobile-specific styles */
+@media (max-width: 640px) {
+  .section-container {
+    @apply px-4 py-6;
+  }
+  
+  .section-title {
+    @apply text-2xl leading-tight;
+  }
+  
+  .section-subtitle {
+    @apply text-base;
+  }
+  
+  /* Mobile button styles */
+  .mobile-full-width {
+    @apply w-full;
+  }
+  
+  /* Mobile spacing */
+  .mobile-spacing-lg {
+    @apply mb-6;
+  }
+  
+  .mobile-spacing-md {
+    @apply mb-4;
+  }
+  
+  /* Mobile text sizes */
+  .mobile-text-lg {
+    @apply text-lg;
+  }
+  
+  .mobile-text-base {
+    @apply text-base;
+  }
+  
+  /* Mobile card adjustments */
+  .mobile-card-padding {
+    @apply p-4;
+  }
+  
+  /* Mobile grid adjustments */
+  .mobile-grid-stack {
+    @apply grid-cols-1;
+  }
+}
+
+/* Enhanced mobile optimizations */
+@media (max-width: 640px) {
+  /* Better touch targets */
+  button, a, .clickable {
+    @apply min-h-[44px] min-w-[44px];
+  }
+  
+  /* Form inputs */
+  input, textarea, select {
+    font-size: 16px !important; /* Prevents iOS zoom on focus */
+    @apply py-3 px-4;
+  }
+  
+  /* Rounded corners adjustment */
+  .rounded-3xl {
+    @apply rounded-xl;
+  }
+  
+  .rounded-2xl {
+    @apply rounded-lg;
+  }
+  
+  /* Prevent horizontal scroll */
+  .overflow-x-hidden {
+    overflow-x: hidden;
+  }
+}
+
+/* Disable parallax on mobile for better performance */
+@media (max-width: 768px) {
+  .parallax {
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* Shadow styles */
+.shadow-elegant {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-elegant-hover {
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* Card animation */
+@keyframes card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-card-enter {
+  animation: card-enter 0.4s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+/* Accordion styles for mobile */
+@media (max-width: 640px) {
+  .accordion-content {
+    @apply px-4 pb-4;
+  }
+  
+  .accordion-trigger {
+    @apply px-4 py-3 text-left;
+  }
+}
