@@ -8,6 +8,7 @@ import Testimonials from "@/components/Testimonials";
 import Pricing from "@/components/Pricing";
 import FAQ from "@/components/FAQ";
 import FreeTools from "@/components/FreeTools";
+import CTA from "@/components/CTA";
 import About from "@/components/About";
 import Footer from "@/components/Footer";
 
@@ -68,7 +69,8 @@ const BusinessOwner = () => {
         <Pricing variant="business" />
         <FAQ variant="business" />
         <FreeTools />
-        <About />
+        <CTA />
+        <About variant="business" />
       </main>
       <Footer />
     </div>

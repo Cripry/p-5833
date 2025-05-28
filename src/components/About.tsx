@@ -2,12 +2,31 @@
 import React from "react";
 import { CheckCircle } from "lucide-react";
 
-const About = () => {
-  const credentials = [
-    "Certified Coach",
-    "Strategic, fast-paced sessions", 
-    "1:1 focus, 100% customized"
-  ];
+interface AboutProps {
+  variant?: "business" | "student";
+}
+
+const About = ({ variant = "business" }: AboutProps) => {
+  const getCredentials = () => {
+    const baseCredentials = [
+      "Strategic, fast-paced sessions", 
+      "1:1 focus, 100% customized"
+    ];
+    
+    if (variant === "student") {
+      return [
+        ...baseCredentials,
+        "Academic writing & research support"
+      ];
+    } else {
+      return [
+        ...baseCredentials,
+        "Business strategy & growth focus"
+      ];
+    }
+  };
+
+  const credentials = getCredentials();
 
   return (
     <section className="py-16 sm:py-20 bg-white" id="about">
@@ -32,7 +51,10 @@ const About = () => {
                   I help stuck thinkers take clear action.
                 </p>
                 <p>
-                  Whether you're building a biz or finishing your thesis—
+                  {variant === "student" 
+                    ? "Whether you're building a biz or finishing your thesis—"
+                    : "Whether you're building a biz or finishing your thesis—"
+                  }
                 </p>
                 <p className="text-pulse-600 font-medium">
                   → You don't have to figure it out alone.
