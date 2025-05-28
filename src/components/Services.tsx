@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useLocation } from "react-router-dom";
 
 const Services = () => {
@@ -94,6 +94,7 @@ const Services = () => {
   };
 
   const currentExamples = isBusinessOwner ? businessExamples : studentExamples;
+  const mobileExamples = currentExamples.slice(0, 4);
 
   return (
     <section id="services" className="py-12 sm:py-16 lg:py-20 bg-white overflow-x-hidden">
@@ -121,7 +122,37 @@ const Services = () => {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          {/* Mobile: Show only 4 cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:hidden">
+            {mobileExamples.map((example, index) => (
+              <div 
+                key={index} 
+                className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-elegant hover:shadow-elegant-hover transition-all duration-300 flex flex-col justify-center min-h-[180px] sm:min-h-[200px]"
+              >
+                <div className="space-y-3 sm:space-y-4">
+                  <div className="text-center">
+                    <p 
+                      className="text-sm sm:text-base text-gray-700 leading-relaxed mb-3" 
+                      dangerouslySetInnerHTML={{
+                        __html: highlightText(example.before, example.beforeHighlight)
+                      }} 
+                    />
+                  </div>
+                  <div className="border-t border-gray-100 pt-3">
+                    <p 
+                      className="text-sm sm:text-base text-gray-700 leading-relaxed text-center" 
+                      dangerouslySetInnerHTML={{
+                        __html: highlightText(example.after, example.afterHighlight, true)
+                      }} 
+                    />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Desktop: Show all cards */}
+          <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {currentExamples.map((example, index) => (
               <div 
                 key={index} 
