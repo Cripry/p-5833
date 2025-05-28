@@ -58,9 +58,7 @@ const CTA = () => {
                 <p className="font-medium text-gray-900">
                   Let's map the way forward — together.
                 </p>
-                <p className="text-pulse-600">
-                  👉 Not sure yet? No problem. Just drop your name and email — I'll send you a quick intro and you can decide later.
-                </p>
+                <p className="text-pulse-600">Not sure yet? No problem. Just drop your name and email — I'll send you a quick intro and you can decide later.</p>
               </div>
               
               <Button onClick={handleBookCall} className="bg-pulse-500 hover:bg-pulse-600 text-white font-semibold py-3 px-8 text-lg">Book Free Clarity Call</Button>
