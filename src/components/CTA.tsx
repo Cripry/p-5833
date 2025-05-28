@@ -1,7 +1,5 @@
-
 import React, { useEffect } from "react";
 import { Button } from "@/components/ui/button";
-
 const CTA = () => {
   useEffect(() => {
     // Cal.com embed script
@@ -19,21 +17,17 @@ const CTA = () => {
       var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}
     `;
     document.body.appendChild(tallyScript);
-
     return () => {
       // Cleanup if needed
     };
   }, []);
-
   const handleBookCall = () => {
     // Use Cal.ns API directly instead of clicking DOM elements to avoid duplicates
     if (window.Cal && window.Cal.ns && window.Cal.ns["30min"]) {
       window.Cal.ns["30min"]("open");
     }
   };
-
-  return (
-    <section className="py-16 sm:py-20 bg-gray-50" id="cta">
+  return <section className="py-16 sm:py-20 bg-gray-50" id="cta">
       <div className="section-container">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
@@ -69,33 +63,17 @@ const CTA = () => {
                 </p>
               </div>
               
-              <Button 
-                onClick={handleBookCall}
-                className="bg-pulse-500 hover:bg-pulse-600 text-white font-semibold py-3 px-8 text-lg"
-              >
-                📅 Book Free Clarity Call
-              </Button>
+              <Button onClick={handleBookCall} className="bg-pulse-500 hover:bg-pulse-600 text-white font-semibold py-3 px-8 text-lg">Book Free Clarity Call</Button>
             </div>
             
             {/* Right side - Tally form */}
             <div className="bg-white rounded-2xl p-6 shadow-elegant">
-              <iframe 
-                data-tally-src="https://tally.so/embed/mBlp9Q?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" 
-                loading="lazy" 
-                width="100%" 
-                height={484}
-                frameBorder={0}
-                marginHeight={0}
-                marginWidth={0}
-                title="Contact Form"
-                className="rounded-lg"
-              />
+              <iframe data-tally-src="https://tally.so/embed/mBlp9Q?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height={484} frameBorder={0} marginHeight={0} marginWidth={0} title="Contact Form" className="rounded-lg" />
             </div>
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
 
 // Add type declarations for Cal.com
@@ -104,5 +82,4 @@ declare global {
     Cal: any;
   }
 }
-
 export default CTA;
