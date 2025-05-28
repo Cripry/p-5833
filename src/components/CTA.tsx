@@ -26,10 +26,9 @@ const CTA = () => {
   }, []);
 
   const handleBookCall = () => {
-    // Trigger Cal.com calendar
-    const calButton = document.querySelector('[data-cal-link]') as HTMLElement;
-    if (calButton) {
-      calButton.click();
+    // Use Cal.ns API directly instead of clicking DOM elements to avoid duplicates
+    if (window.Cal && window.Cal.ns && window.Cal.ns["30min"]) {
+      window.Cal.ns["30min"]("open");
     }
   };
 
@@ -37,12 +36,27 @@ const CTA = () => {
     <section className="py-16 sm:py-20 bg-gray-50" id="cta">
       <div className="section-container">
         <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <div className="pulse-chip mx-auto mb-6">
+              <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-pulse-500 text-white mr-2">07</span>
+              <span>Get Started</span>
+            </div>
+            
+            <h2 className="text-4xl sm:text-5xl font-bold mb-4">
+              Ready to Find Your Clarity?
+            </h2>
+            
+            <p className="text-gray-600 text-lg">
+              Take the first step towards focused action and clear direction.
+            </p>
+          </div>
+
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             {/* Left side - Text and CTA */}
             <div className="space-y-6">
               <div className="space-y-4 text-lg text-gray-700">
                 <p>
-                  Getting started is easy — and pressure-free. Book a free 30-minute Clarity Call and let's talk through what's on your mind. Whether you're building a business or writing a thesis, I'll help you take your next clear step — no fluff, no overwhelm.
+                  Book a free 30-minute call — no pressure, just real talk. Whether it's your business or your thesis, we'll map your next step together. Simple, focused, and zero fluff.
                 </p>
                 <p className="font-medium text-gray-900">
                   You don't need a plan. You just need to show up.
@@ -58,9 +72,6 @@ const CTA = () => {
               <Button 
                 onClick={handleBookCall}
                 className="bg-pulse-500 hover:bg-pulse-600 text-white font-semibold py-3 px-8 text-lg"
-                data-cal-link="cristian-preguza-fintaxy/30min"
-                data-cal-namespace="30min"
-                data-cal-config='{"layout":"month_view"}'
               >
                 📅 Book Free Clarity Call
               </Button>
@@ -86,5 +97,12 @@ const CTA = () => {
     </section>
   );
 };
+
+// Add type declarations for Cal.com
+declare global {
+  interface Window {
+    Cal: any;
+  }
+}
 
 export default CTA;

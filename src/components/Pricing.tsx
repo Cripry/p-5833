@@ -9,6 +9,17 @@ interface PricingProps {
 }
 
 const Pricing = ({ variant = "business" }: PricingProps) => {
+  const scrollToCTA = () => {
+    const ctaElement = document.getElementById('cta');
+    if (ctaElement) {
+      const offset = window.innerWidth < 768 ? 100 : 80;
+      window.scrollTo({
+        top: ctaElement.offsetTop - offset,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   const getPersonalization = (step: number) => {
     if (variant === "student") {
       switch (step) {
@@ -41,8 +52,8 @@ const Pricing = ({ variant = "business" }: PricingProps) => {
       ],
       ctaText: "Book Free Call",
       highlighted: false,
-      bgColor: "bg-sky-50",
-      borderColor: "border-sky-200"
+      bgColor: "bg-white",
+      borderColor: "border-gray-200"
     },
     {
       id: "clarity",
@@ -58,7 +69,7 @@ const Pricing = ({ variant = "business" }: PricingProps) => {
       ctaText: "Try a Full Clarity Session",
       highlighted: false,
       bgColor: "bg-white",
-      borderColor: "bg-white",
+      borderColor: "border-gray-200",
       personalization: getPersonalization(2)
     },
     {
@@ -91,8 +102,8 @@ const Pricing = ({ variant = "business" }: PricingProps) => {
       ],
       ctaText: "Start Monthly Coaching",
       highlighted: false,
-      bgColor: "bg-sky-50",
-      borderColor: "border-sky-200",
+      bgColor: "bg-white",
+      borderColor: "border-gray-200",
       personalization: getPersonalization(4)
     }
   ];
@@ -120,7 +131,7 @@ const Pricing = ({ variant = "business" }: PricingProps) => {
             {pricingPlans.map((plan) => (
               <Card 
                 key={plan.id} 
-                className={`relative transition-all duration-300 hover:shadow-elegant-hover h-full ${
+                className={`relative transition-all duration-300 hover:shadow-elegant-hover h-full flex flex-col ${
                   plan.highlighted 
                     ? 'border-2 border-pulse-500 shadow-elegant-hover' 
                     : `border ${plan.borderColor} shadow-elegant hover:scale-102`
@@ -141,7 +152,7 @@ const Pricing = ({ variant = "business" }: PricingProps) => {
                   </div>
                 </CardHeader>
                 
-                <CardContent className="space-y-4 px-6 pb-6 flex flex-col h-full">
+                <CardContent className="space-y-4 px-6 pb-6 flex flex-col flex-grow">
                   {plan.personalization && (
                     <div className="mb-4 p-3 bg-pulse-100 rounded-lg border border-pulse-200">
                       <p className="text-xs text-pulse-700 font-medium">
@@ -165,6 +176,7 @@ const Pricing = ({ variant = "business" }: PricingProps) => {
                   
                   <div className="pt-4 mt-auto">
                     <Button 
+                      onClick={scrollToCTA}
                       className={`w-full font-medium py-3 text-xs ${
                         plan.highlighted 
                           ? 'bg-pulse-500 hover:bg-pulse-600 text-white' 
