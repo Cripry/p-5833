@@ -15,7 +15,7 @@ const About = ({
     }
   };
   const credentials = getCredentials();
-  return <section id="about" className="py-16 sm:py-20 bg-gray-50">
+  return <section id="about" className="py-16 sm:py-20 bg-white">
       <div className="section-container">
         <div className="max-w-4xl mx-auto">
           <div className="pulse-chip mb-6">

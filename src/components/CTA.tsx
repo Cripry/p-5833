@@ -27,7 +27,7 @@ const CTA = () => {
       window.Cal.ns["30min"]("open");
     }
   };
-  return <section className="py-16 sm:py-20 bg-gray-50" id="cta">
+  return <section id="cta" className="py-16 sm:py-20 bg-white">
       <div className="section-container">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">

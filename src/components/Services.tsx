@@ -74,7 +74,7 @@ const Services = () => {
     return highlightedText;
   };
   const currentExamples = isBusinessOwner ? businessExamples : studentExamples;
-  return <section className="py-16 sm:py-20 bg-gray-50" id="services">
+  return <section id="services" className="py-16 sm:py-20 bg-white">
       <div className="section-container">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
