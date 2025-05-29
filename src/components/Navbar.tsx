@@ -101,6 +101,16 @@ const Navbar = () => {
             <a href="#how-it-works" className="nav-link">How It Works</a>
             <a href="#testimonials" className="nav-link">Client Stories</a>
             <a href="#free-tools" className="nav-link">Free Tools</a>
+            <a 
+              href="#" 
+              className="nav-link"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavigation('/blog');
+              }}
+            >
+              Blog
+            </a>
             <a href="#cta" className="nav-link">Book a Call</a>
           </nav>
 
@@ -201,6 +211,16 @@ const Navbar = () => {
               onClick={closeMenu}
             >
               Free Tools
+            </a>
+            <a 
+              href="#" 
+              className="text-lg font-medium py-3 px-4 w-full text-center rounded-lg hover:bg-gray-100 transition-colors" 
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavigation('/blog');
+              }}
+            >
+              Blog
             </a>
             <a 
               href="#cta" 

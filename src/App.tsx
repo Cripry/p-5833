@@ -7,6 +7,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Index from "./pages/Index";
 import BusinessOwner from "./pages/BusinessOwner";
 import Student from "./pages/Student";
+import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -21,6 +23,8 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/business-owner" element={<BusinessOwner />} />
           <Route path="/student" element={<Student />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
           {/* Redirect common variations to correct paths */}
           <Route path="/business" element={<Navigate to="/business-owner" replace />} />
           <Route path="/home" element={<Navigate to="/business-owner" replace />} />
