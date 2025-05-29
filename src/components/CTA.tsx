@@ -26,8 +26,16 @@ const CTA = () => {
   }, []);
 
   const handleBookCall = () => {
+    console.log('Cal object:', window.Cal);
+    console.log('Cal namespace:', window.Cal?.ns);
+    
     if (window.Cal && window.Cal.ns && window.Cal.ns["30min"]) {
+      console.log('Opening Cal.com modal');
       window.Cal.ns["30min"]("open");
+    } else {
+      console.log('Cal.com not loaded, trying fallback');
+      // Fallback for mobile - direct link
+      window.open('https://cal.com/30min', '_blank');
     }
   };
 
@@ -53,7 +61,7 @@ const CTA = () => {
           {/* Mobile: Stack vertically with text/button at top, survey at bottom */}
           <div className="md:hidden space-y-8">
             {/* Text and CTA at top */}
-            <div className="space-y-4 sm:space-y-6 text-center">
+            <div className="space-y-4 sm:space-y-6 text-center px-4">
               <div className="space-y-3 sm:space-y-4 text-base sm:text-lg text-gray-700">
                 <p className="leading-relaxed">
                   Book a free 30-minute call — no pressure, just real talk. Whether it's your business or your thesis, we'll map your next step together. Simple, focused, and zero fluff.
@@ -78,17 +86,18 @@ const CTA = () => {
             </div>
             
             {/* Tally form at bottom */}
-            <div className="bg-white rounded-lg sm:rounded-2xl p-4 sm:p-6 shadow-elegant">
+            <div className="bg-white rounded-lg sm:rounded-2xl p-4 sm:p-6 shadow-elegant mx-4">
               <iframe 
                 data-tally-src="https://tally.so/embed/mBlp9Q?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" 
                 loading="lazy" 
                 width="100%" 
-                height={484}
-                frameBorder={0}
-                marginHeight={0}
-                marginWidth={0}
+                height="484"
+                frameBorder="0"
+                marginHeight="0"
+                marginWidth="0"
                 title="Contact Form" 
                 className="rounded-lg w-full"
+                style={{ maxWidth: '100%', overflow: 'hidden' }}
               />
             </div>
           </div>
@@ -126,12 +135,13 @@ const CTA = () => {
                 data-tally-src="https://tally.so/embed/mBlp9Q?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" 
                 loading="lazy" 
                 width="100%" 
-                height={484}
-                frameBorder={0}
-                marginHeight={0}
-                marginWidth={0}
+                height="484"
+                frameBorder="0"
+                marginHeight="0"
+                marginWidth="0"
                 title="Contact Form" 
                 className="rounded-lg w-full"
+                style={{ maxWidth: '100%', overflow: 'hidden' }}
               />
             </div>
           </div>

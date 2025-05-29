@@ -103,11 +103,18 @@
 
   body {
     @apply bg-white text-black font-sans antialiased;
+    overflow-x: hidden; /* Prevent horizontal scroll globally */
   }
 
-  /* Smooth scrolling */
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden; /* Prevent horizontal scroll globally */
+  }
+
+  /* Prevent all elements from creating horizontal scroll */
+  * {
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   /* Custom scrollbar */
@@ -144,6 +151,8 @@
   
   .section-container {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12;
+    width: 100%;
+    overflow-x: hidden;
   }
 
   .section-title {
@@ -226,14 +235,18 @@
 @media (max-width: 640px) {
   .section-container {
     @apply px-4 py-6;
+    width: 100%;
+    overflow-x: hidden;
   }
   
   .section-title {
     @apply text-2xl leading-tight;
+    word-wrap: break-word;
   }
   
   .section-subtitle {
     @apply text-base;
+    word-wrap: break-word;
   }
   
   /* Mobile button styles */
@@ -268,6 +281,19 @@
   .mobile-grid-stack {
     @apply grid-cols-1;
   }
+
+  /* Ensure all content stays within viewport */
+  .container {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+
+  /* Prevent text from overflowing */
+  h1, h2, h3, h4, h5, h6, p, div {
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+  }
 }
 
 /* Enhanced mobile optimizations */
@@ -281,6 +307,8 @@
   input, textarea, select {
     font-size: 16px !important; /* Prevents iOS zoom on focus */
     @apply py-3 px-4;
+    width: 100% !important;
+    max-width: 100% !important;
   }
   
   /* Rounded corners adjustment */
@@ -294,7 +322,13 @@
   
   /* Prevent horizontal scroll */
   .overflow-x-hidden {
-    overflow-x: hidden;
+    overflow-x: hidden !important;
+  }
+
+  /* Fix any potential width issues */
+  iframe {
+    width: 100% !important;
+    max-width: 100% !important;
   }
 }
 
