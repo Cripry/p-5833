@@ -9,27 +9,21 @@ interface ContentfulConfig {
 }
 
 interface BlogPost {
-  sys: {
-    id: string;
-    createdAt: string;
-    updatedAt: string;
-  };
-  fields: {
-    title: string;
-    slug: string;
-    content: any; // Rich text content
-    excerpt: string;
-    publishDate: string;
-    featuredImage?: {
-      fields: {
-        file: {
-          url: string;
-        };
-      };
-    };
-    author?: string;
-    tags?: string[];
-  };
+  id: string;
+  title: string;
+  slug: string;
+  content: string;
+  excerpt: string;
+  publishDate: string;
+  featuredImage?: string;
+  author?: string;
+  tags?: string[];
+}
+
+interface RelatedPost {
+  id: string;
+  title: string;
+  slug: string;
 }
 
 // Contentful configuration with your preview API key
@@ -45,15 +39,31 @@ const client = createClient({
   environment: CONTENTFUL_CONFIG.environment || 'master'
 });
 
+// Helper function to transform Contentful entry to BlogPost
+function transformContentfulEntry(entry: any): BlogPost {
+  const fields = entry.fields;
+  return {
+    id: entry.sys.id,
+    title: fields.title || '',
+    slug: fields.slug || '',
+    content: richTextToHtml(fields.content) || '',
+    excerpt: fields.excerpt || '',
+    publishDate: fields.publishDate || entry.sys.createdAt,
+    featuredImage: getImageUrl(fields.featuredImage),
+    author: fields.author || '',
+    tags: fields.tags || []
+  };
+}
+
 export async function getBlogPosts(limit = 10): Promise<BlogPost[]> {
   try {
     const response = await client.getEntries({
       content_type: 'blogPost',
       limit,
-      order: '-fields.publishDate'
+      order: ['-fields.publishDate'] // Fixed: now it's an array
     });
 
-    return response.items as BlogPost[];
+    return response.items.map(transformContentfulEntry);
   } catch (error) {
     console.error('Error fetching blog posts:', error);
     return [];
@@ -68,23 +78,28 @@ export async function getBlogPost(slug: string): Promise<BlogPost | null> {
       limit: 1
     });
 
-    return response.items[0] as BlogPost || null;
+    if (response.items.length === 0) return null;
+    return transformContentfulEntry(response.items[0]);
   } catch (error) {
     console.error('Error fetching blog post:', error);
     return null;
   }
 }
 
-export async function getRelatedPosts(currentPostId: string, limit = 3): Promise<BlogPost[]> {
+export async function getRelatedPosts(currentPostId: string, limit = 3): Promise<RelatedPost[]> {
   try {
     const response = await client.getEntries({
       content_type: 'blogPost',
       'sys.id[ne]': currentPostId,
       limit,
-      order: '-fields.publishDate'
+      order: ['-fields.publishDate'] // Fixed: now it's an array
     });
 
-    return response.items as BlogPost[];
+    return response.items.map((entry: any) => ({
+      id: entry.sys.id,
+      title: entry.fields.title || '',
+      slug: entry.fields.slug || ''
+    }));
   } catch (error) {
     console.error('Error fetching related posts:', error);
     return [];
@@ -115,4 +130,4 @@ export function getImageUrl(asset: any): string {
   return asset?.fields?.file?.url ? `https:${asset.fields.file.url}` : '';
 }
 
-export type { BlogPost, ContentfulConfig };
+export type { BlogPost, ContentfulConfig, RelatedPost };
