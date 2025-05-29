@@ -1,6 +1,6 @@
 
 // Contentful integration utility
-// Install contentful package: npm install contentful
+import { createClient } from 'contentful';
 
 interface ContentfulConfig {
   space: string;
@@ -32,21 +32,17 @@ interface BlogPost {
   };
 }
 
-// Mock configuration - replace with actual Contentful credentials
+// Contentful configuration with your preview API key
 const CONTENTFUL_CONFIG: ContentfulConfig = {
-  space: 'your-space-id',
-  accessToken: 'your-access-token',
+  space: 'your-space-id', // You'll need to replace this with your actual space ID
+  accessToken: 'L49V04ZYhPDy_2QJBV7TO2a6ifGs2glarR37qqxm4sg',
   environment: 'master'
 };
-
-// Uncomment when ready to integrate with Contentful
-/*
-import { createClient } from 'contentful';
 
 const client = createClient({
   space: CONTENTFUL_CONFIG.space,
   accessToken: CONTENTFUL_CONFIG.accessToken,
-  environment: CONTENTFUL_CONFIG.environment
+  environment: CONTENTFUL_CONFIG.environment || 'master'
 });
 
 export async function getBlogPosts(limit = 10): Promise<BlogPost[]> {
@@ -94,28 +90,23 @@ export async function getRelatedPosts(currentPostId: string, limit = 3): Promise
     return [];
   }
 }
-*/
-
-// Mock functions for development
-export async function getBlogPosts(limit = 10) {
-  // Return mock data for now
-  return [];
-}
-
-export async function getBlogPost(slug: string) {
-  // Return mock data for now
-  return null;
-}
-
-export async function getRelatedPosts(currentPostId: string, limit = 3) {
-  // Return mock data for now
-  return [];
-}
 
 // Helper function to convert Contentful rich text to HTML
 export function richTextToHtml(richText: any): string {
-  // This would typically use @contentful/rich-text-html-renderer
-  // For now, return the content as-is
+  if (!richText) return '';
+  
+  // Basic rich text to HTML conversion
+  // You may want to use @contentful/rich-text-html-renderer for more complex content
+  if (richText.content) {
+    return richText.content.map((node: any) => {
+      if (node.nodeType === 'paragraph') {
+        const text = node.content.map((textNode: any) => textNode.value).join('');
+        return `<p>${text}</p>`;
+      }
+      return '';
+    }).join('');
+  }
+  
   return richText?.content || '';
 }
 
