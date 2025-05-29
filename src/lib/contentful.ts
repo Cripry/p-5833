@@ -28,7 +28,7 @@ interface RelatedPost {
 
 // Contentful configuration with your preview API key
 const CONTENTFUL_CONFIG: ContentfulConfig = {
-  space: 'your-space-id', // You'll need to replace this with your actual space ID
+  space: 'n9giy8tbar30', // You'll need to replace this with your actual space ID
   accessToken: 'L49V04ZYhPDy_2QJBV7TO2a6ifGs2glarR37qqxm4sg',
   environment: 'master'
 };
