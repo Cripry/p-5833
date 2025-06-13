@@ -114,7 +114,7 @@ const CTA = () => {
             {/* Right side - Tally form */}
             <div className="bg-white rounded-lg sm:rounded-2xl p-4 sm:p-6 shadow-elegant order-1 lg:order-2">
               <iframe 
-                data-tally-src="https://tally.so/embed/mBlp9Q?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" 
+                data-tally-src="https://tally.so/embed/wvvZ1Q?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" 
                 loading="lazy" 
                 width={100} 
                 height={484}
