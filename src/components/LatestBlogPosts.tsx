@@ -34,7 +34,7 @@ const LatestBlogPosts = () => {
         slug: "the-power-of-strategic-pausing",
         excerpt: "Sometimes the best action is no action. Discover why strategic pauses can be your most powerful business tool.",
         publishDate: "2024-01-10",
-        featuredImage: "/lovable-uploads/af412c03-21e4-4856-82ff-d1a975dc84a9.png"
+        featuredImage: "/lovable-uploads/e06c3313-0c03-4144-adcf-8f967601d5df.png"
       },
       {
         id: "3",
