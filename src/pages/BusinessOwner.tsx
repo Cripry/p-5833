@@ -1,11 +1,9 @@
-
 import React, { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
 import HowItWorks from "@/components/HowItWorks";
 import Testimonials from "@/components/Testimonials";
-import Pricing from "@/components/Pricing";
 import FAQ from "@/components/FAQ";
 import FreeTools from "@/components/FreeTools";
 import LatestBlogPosts from "@/components/LatestBlogPosts";
@@ -67,7 +65,6 @@ const BusinessOwner = () => {
         <Services />
         <HowItWorks />
         <Testimonials />
-        <Pricing variant="business" />
         <FAQ variant="business" />
         <FreeTools />
         <LatestBlogPosts />

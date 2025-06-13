@@ -1,74 +1,95 @@
 
 import React from "react";
-import { Facebook, Twitter, Linkedin, Mail, Phone } from "lucide-react";
+import { Mail } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="w-full bg-gradient-to-br from-pulse-500 to-pulse-600 text-white py-16">
+    <footer className="bg-gray-900 text-white py-12 sm:py-16">
       <div className="section-container">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          {/* Company Info */}
-          <div>
-            <h3 className="text-xl font-bold mb-4">Clarity Coaching</h3>
-            <p className="text-white/80 mb-6">
-              Empowering students and entrepreneurs to achieve clarity and success through personalized coaching.
-            </p>
-            <div className="space-y-2">
-              <div className="flex items-center">
-                <Mail className="w-4 h-4 mr-2" />
-                <span className="text-white/80">info@claritycoaching.com</span>
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            {/* Company Info */}
+            <div className="md:col-span-2">
+              <h3 className="text-xl font-bold mb-4">Tharsis Solutions</h3>
+              <p className="text-gray-300 mb-6 leading-relaxed">
+                Clarity coaching for entrepreneurs and students. Cut through the noise, 
+                find your focus, and take action that actually moves you forward.
+              </p>
+              <div className="space-y-2">
+                <div className="flex items-center space-x-3">
+                  <Mail className="w-5 h-5 text-pulse-400" />
+                  <a href="mailto:rolf@tharsis.solutions" className="text-gray-300 hover:text-white transition-colors">
+                    rolf@tharsis.solutions
+                  </a>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Mail className="w-5 h-5 text-pulse-400" />
+                  <a href="mailto:contact@tharsis.solutions" className="text-gray-300 hover:text-white transition-colors">
+                    contact@tharsis.solutions
+                  </a>
+                </div>
               </div>
-              <div className="flex items-center">
-                <Phone className="w-4 h-4 mr-2" />
-                <span className="text-white/80">+123-456-7890</span>
-              </div>
+            </div>
+
+            {/* Quick Links */}
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+              <ul className="space-y-2">
+                <li>
+                  <a href="#services" className="text-gray-300 hover:text-white transition-colors">
+                    Services
+                  </a>
+                </li>
+                <li>
+                  <a href="#how-it-works" className="text-gray-300 hover:text-white transition-colors">
+                    How It Works
+                  </a>
+                </li>
+                <li>
+                  <a href="#testimonials" className="text-gray-300 hover:text-white transition-colors">
+                    Testimonials
+                  </a>
+                </li>
+                <li>
+                  <a href="#faq" className="text-gray-300 hover:text-white transition-colors">
+                    FAQ
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Resources */}
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Resources</h4>
+              <ul className="space-y-2">
+                <li>
+                  <a href="#free-tools" className="text-gray-300 hover:text-white transition-colors">
+                    Free Tools
+                  </a>
+                </li>
+                <li>
+                  <a href="/blog" className="text-gray-300 hover:text-white transition-colors">
+                    Blog
+                  </a>
+                </li>
+                <li>
+                  <a href="#about" className="text-gray-300 hover:text-white transition-colors">
+                    About
+                  </a>
+                </li>
+                <li>
+                  <a href="#cta" className="text-gray-300 hover:text-white transition-colors">
+                    Contact
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-            <ul className="space-y-2">
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">Home</a></li>
-              <li><a href="#services" className="text-white/80 hover:text-white transition-colors">Business Coaching</a></li>
-              <li><a href="#services" className="text-white/80 hover:text-white transition-colors">Thesis Coaching</a></li>
-              <li><a href="#free-tools" className="text-white/80 hover:text-white transition-colors">Blog</a></li>
-              <li><a href="#contact" className="text-white/80 hover:text-white transition-colors">Book a Call</a></li>
-              <li><a href="#contact" className="text-white/80 hover:text-white transition-colors">Contact</a></li>
-            </ul>
-          </div>
-
-          {/* Social Media */}
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Follow Us</h4>
-            <div className="flex space-x-4">
-              <a href="#" className="text-white/80 hover:text-white transition-colors">
-                <Facebook className="w-6 h-6" />
-              </a>
-              <a href="#" className="text-white/80 hover:text-white transition-colors">
-                <Twitter className="w-6 h-6" />
-              </a>
-              <a href="#" className="text-white/80 hover:text-white transition-colors">
-                <Linkedin className="w-6 h-6" />
-              </a>
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom Bar */}
-        <div className="border-t border-white/20 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-white/60 text-sm mb-4 md:mb-0">
-              © 2024 Clarity Coaching. All rights reserved.
+          <div className="border-t border-gray-800 mt-8 pt-8 text-center">
+            <p className="text-gray-400">
+              © {new Date().getFullYear()} Tharsis Solutions. All rights reserved.
             </p>
-            <div className="flex space-x-6">
-              <a href="#" className="text-white/60 hover:text-white text-sm transition-colors">
-                Privacy Policy
-              </a>
-              <a href="#" className="text-white/60 hover:text-white text-sm transition-colors">
-                Terms of Service
-              </a>
-            </div>
           </div>
         </div>
       </div>
