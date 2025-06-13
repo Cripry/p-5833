@@ -26,7 +26,7 @@ const LatestBlogPosts = () => {
         slug: "finding-clarity-in-business-chaos",
         excerpt: "When everything feels urgent, nothing is clear. Learn how to cut through the noise and focus on what actually moves your business forward.",
         publishDate: "2024-01-15",
-        featuredImage: "/lovable-uploads/22d31f51-c174-40a7-bd95-00e4ad00eaf3.png"
+        featuredImage: "/lovable-uploads/2e0667a7-1fda-4b61-8923-e73440bd6015.png"
       },
       {
         id: "2",

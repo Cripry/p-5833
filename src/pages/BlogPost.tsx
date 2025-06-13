@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
@@ -73,7 +74,7 @@ const BlogPost = () => {
       `,
       excerpt: "When everything feels urgent, nothing is clear. Learn how to cut through the noise and focus on what actually moves your business forward.",
       publishDate: "2024-01-15",
-      featuredImage: "/lovable-uploads/b7966ce2-bffe-40c0-972b-bdc81f3e520f.png",
+      featuredImage: "/lovable-uploads/2e0667a7-1fda-4b61-8923-e73440bd6015.png",
       author: "Tharsis Solutions"
     };
 
