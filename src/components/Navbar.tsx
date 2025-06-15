@@ -111,7 +111,7 @@ const Navbar = () => {
             >
               Blog
             </a>
-            <a href="#cta" className="nav-link">Book a Call</a>
+            <a href="business-owner#cta" className="nav-link">Book a Call</a>
           </nav>
 
           {/* Desktop Toggle Switch */}
